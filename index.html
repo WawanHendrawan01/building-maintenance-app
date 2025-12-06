@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Department - Reporting System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- PDF Export Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>ENGINEERING DEPARTMENT</h2>
+                <p>HORISON ULTIMA MENTENG JAKARTA</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#home" class="nav-item active">Home</a></li>
+                    
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="daily">Daily ▼</a>
+                        <ul class="submenu" id="daily-menu">
+                                <li><a href="#daily-overview" class="nav-item">Daily Overview</a></li>
+                                <li class="nav-group">
+                                    <a href="#" class="nav-item dropdown-toggle" data-toggle="daily-checklist">Daily Checklist ▼</a>
+                                    <ul class="submenu" id="daily-checklist-menu">
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="utility-items">Utility ▼</a>
+                                            <ul class="submenu" id="utility-items">
+                                                <li><a href="#utility-stand-meter" class="nav-item">Utility - Stand Meter</a></li>
+                                                <li><a href="#utility-public-area" class="nav-item">Utility - Public Area</a></li>
+                                                 <li><a href="#utility-boh" class="nav-item">Utility - BOH</a></li>
+                                                  <li><a href="#utility-server-room" class="nav-item">Utility - Server Room</a></li>
+                                                   <li><a href="#utility-pump-room" class="nav-item">Utility - Pump Room</a></li>
+                                                    <li><a href="#utility-lobby-area" class="nav-item">Utility - Lobby Area</a></li>
+                                                     <li><a href="#utility-kitchen-area" class="nav-item">Utility - Kitchen Area</a></li>
+                                                      <li><a href="#utility-rooftop" class="nav-item">Utility - Rooftop</a></li>
+                                                       <li><a href="#utility-lift-room" class="nav-item">Utility - Lift Room</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="waterheater-items">Water Heater ▼</a>
+                                            <ul class="submenu" id="waterheater-items">
+                                                <li><a href="#waterheater-WH-1" class="nav-item">WH - 1</a></li>
+                                                <li><a href="#waterheater-WH-2" class="nav-item">WH - 2</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="genset-items">Genset Area ▼</a>
+                                            <ul class="submenu" id="genset-items">
+                                                <li><a href="#genset-1" class="nav-item">Genset 1 - 550Kva</a></li>
+                                                <li><a href="#genset-2" class="nav-item">Genset 2 - 550Kva</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="lvmdp-items">LVMDP ▼</a>
+                                            <ul class="submenu" id="lvmdp-items">
+                                                <li><a href="#lvmdp" class="nav-item">LVMDP</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="swimming-pool-items">Swimming Pool ▼</a>
+                                            <ul class="submenu" id="swimming-pool-items">
+                                                <li><a href="#swimming-pool" class="nav-item">Swimming Pool</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-group">
+                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="pump-room-items">Pump Room ▼</a>
+                                            <ul class="submenu" id="pump-room-items">
+                                                <li><a href="#pump-room" class="nav-item">Pump Room</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="monthly">Monthly ▼</a>
+                        <ul class="submenu" id="monthly-menu">
+                            <li><a href="#monthly-report" class="nav-item">Monthly Report</a></li>
+                            <li><a href="#monthly-maintenance" class="nav-item">Monthly Maintenance</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="training">Training ▼</a>
+                        <ul class="submenu" id="training-menu">
+                            <li><a href="#schedule-training" class="nav-item">Schedule Training</a></li>
+                            <li><a href="#training-record" class="nav-item">Training Record</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="project">Project ▼</a>
+                        <ul class="submenu" id="project-menu">
+                            <li><a href="#project-ongoing" class="nav-item">Project On Going</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="schedule">Schedule ▼</a>
+                        <ul class="submenu" id="schedule-menu">
+                            <li><a href="#schedule-attendance" class="nav-item">Schedule Masuk Kerja</a></li>
+                            <li><a href="#schedule-maintenance" class="nav-item">Schedule Maintenance</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-group">
+                        <a href="#" class="nav-item dropdown-toggle" data-toggle="pomec">POMEC ▼</a>
+                        <ul class="submenu" id="pomec-menu">
+                            <li><a href="#pomec-info" class="nav-item">What Is POMEC?</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-wrapper">
+            <header class="header">
+                <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+                <div class="header-content">
+                    <div>
+                        <h1>Engineering Department</h1>
+                        <p>Reporting & Tracking System</p>
+                    </div>
+                    <div class="header-user">
+                        <span id="user-info">Guest</span>
+                        <button id="logout-btn" class="logout-btn" style="display: none;">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="main-content">
+                <!-- Home Section -->
+                <section id="home" class="section active">
+                    <h2>Home / Dashboard</h2>
+                    <p>Selamat datang di Engineering Department Reporting System Horison Ultima Menteng Jakarta.</p>
+                    <p>Berikut adalah ringkasan data Anda:</p>
+                    
+                    <div class="dashboard-grid">
+                        <div class="card">
+                            <h3>Total Daily Reports</h3>
+                            <p class="stat" id="total-daily">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Total Monthly Reports</h3>
+                            <p class="stat" id="total-monthly">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Total Training</h3>
+                            <p class="stat" id="total-training">0</p>
+                        </div>
+                        <div class="card">
+                            <h3>Active Projects</h3>
+                            <p class="stat" id="total-projects">0</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">Quick Actions</h3>
+                        <p style="color: #666; margin-bottom: 10px;">Pilih menu di sidebar untuk membuat laporan atau tracking project.</p>
+                    </div>
+                </section>
+
+                <!-- Daily Sections -->
+                <section id="daily-overview" class="section">
+                    <h2>Daily Overview</h2>
+                    <p>Laporan ringkas dari semua Daily Checklist dan Schedule.</p>
+                    
+                    <!-- Summary Cards -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px;">
+                        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 8px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="font-size: 14px; opacity: 0.9;">Total Daily Reports</div>
+                            <div style="font-size: 32px; font-weight: bold; margin-top: 10px;" id="daily-total-reports">0</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; border-radius: 8px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="font-size: 14px; opacity: 0.9;">Total Attendance</div>
+                            <div style="font-size: 32px; font-weight: bold; margin-top: 10px;" id="daily-total-attendance">0</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 20px; border-radius: 8px; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            <div style="font-size: 14px; opacity: 0.9;">Total Maintenance</div>
+                            <div style="font-size: 32px; font-weight: bold; margin-top: 10px;" id="daily-total-maintenance">0</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter & History -->
+                    <div class="report-form" style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">Data Harian</h3>
+                            <button id="daily-overview-history-btn" class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">📋 History</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Filter Periode:</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                                <select id="overview-period-select" onchange="filterDailyOverviewBySelect()" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.95em;">
+                                    <option value="today">Hari Ini</option>
+                                    <option value="week">Seminggu</option>
+                                    <option value="month">Sebulan</option>
+                                    <option value="year">Setahun</option>
+                                </select>
+                                <span style="color: #666; font-size: 0.9em;">atau</span>
+                                <input type="date" id="overview-custom-date" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" onclick="filterDailyOverviewByCustomDate()" style="font-size: 0.9em; padding: 8px 15px;">Cari</button>
+                            </div>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table id="daily-overview-table" style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead style="background-color: #f0f4ff;">
+                                    <tr>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">No</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Tanggal</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Tipe</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Detail</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Status</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daily-overview-tbody">
+                                    <tr><td colspan="6" style="padding: 20px; text-align: center; color: #999;">Belum ada data.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- History Modal/Section -->
+                    <div id="daily-overview-history-section" style="display: none; margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">History</h3>
+                            <button onclick="closeDailyOverviewHistory()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em;">Tutup</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <input type="text" id="overview-history-search" placeholder="Cari berdasarkan tanggal atau tipe..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead style="background-color: #f0f4ff;">
+                                    <tr>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">No</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Tanggal</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Tipe</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Detail</th>
+                                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daily-overview-history-tbody">
+                                    <tr><td colspan="5" style="padding: 20px; text-align: center; color: #999;">Belum ada data.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="daily-checklist" class="section">
+                    <h2>Daily Checklist</h2>
+                    <p>Halaman untuk Daily Checklist.</p>
+                    <p>Pilih kategori di bawah untuk melakukan checklist:</p>
+                </section>
+
+                <!-- Utility Sections -->
+                <section id="utility-stand-meter" class="section">
+                    <h2>Utility - Stand Meter</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Pembacaan Meter Manual</h3>
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-stand-meter-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pembacaan Meter (kWh)</label>
+                            <input type="number" id="utility-stand-meter-reading" placeholder="Contoh: 1250.50" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Meter</label>
+                            <select id="utility-stand-meter-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Ada Kerusakan">Ada Kerusakan</option>
+                                <option value="Perlu Servis">Perlu Servis</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-stand-meter-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-stand-meter-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total pembacaan: <span id="utility-stand-meter-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History Pembacaan</h4>
+                        <input type="text" id="utility-stand-meter-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-stand-meter-history-table">
+                            <thead>
+                                <tr><th>No</th><th>Tanggal</th><th>Pembacaan (kWh)</th><th>Kondisi</th><th>Catatan</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-public-area" class="section">
+                    <h2>Utility - Public Area</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-public-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Penggunaan Air (m³)</label>
+                            <input type="number" id="utility-public-water" placeholder="Contoh: 45.5" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Pencahayaan</label>
+                            <select id="utility-public-lighting" required>
+                                <option value="">Pilih...</option>
+                                <option value="Baik">Baik</option>
+                                <option value="Ada Lampu Mati">Ada Lampu Mati</option>
+                                <option value="Perlu Perbaikan">Perlu Perbaikan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Kebersihan</label>
+                            <select id="utility-public-cleanliness" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Cukup Bersih">Cukup Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-public-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-public-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-public-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-public-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-public-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Air (m³)</th><th>Pencahayaan</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-boh" class="section">
+                    <h2>Utility - BOH</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-boh-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Pemeriksaan AC/Ventilasi</label>
+                            <select id="utility-boh-ac" required>
+                                <option value="">Pilih...</option>
+                                <option value="Berfungsi Normal">Berfungsi Normal</option>
+                                <option value="Kurang Dingin">Kurang Dingin</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pemeriksaan Tangki Air</label>
+                            <select id="utility-boh-tank" required>
+                                <option value="">Pilih...</option>
+                                <option value="Penuh">Penuh</option>
+                                <option value="Sedang">Sedang</option>
+                                <option value="Kurang">Kurang</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pemeriksaan Listrik Panel</label>
+                            <select id="utility-boh-panel" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Ada Abnormalitas">Ada Abnormalitas</option>
+                                <option value="Overload">Overload</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-boh-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-boh-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-boh-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-boh-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-boh-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>AC/Ventilasi</th><th>Tangki Air</th><th>Panel Listrik</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-server-room" class="section">
+                    <h2>Utility - Server Room</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-server-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Server</label>
+                            <select id="utility-server-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Overheat">Overheat</option>
+                                <option value="Error">Error</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kebersihan Ruangan</label>
+                            <select id="utility-server-clean" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-server-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-server-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-server-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-server-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-server-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-pump-room" class="section">
+                    <h2>Utility - Pump Room</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-pump-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Pompa</label>
+                            <select id="utility-pump-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Bunyi">Bunyi</option>
+                                <option value="Rusak">Rusak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kebersihan Ruangan</label>
+                            <select id="utility-pump-clean" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-pump-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-pump-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-pump-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-pump-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-pump-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-lobby-area" class="section">
+                    <h2>Utility - Lobby Area</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-lobby-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi AC</label>
+                            <select id="utility-lobby-ac" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Kurang Dingin">Kurang Dingin</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kebersihan</label>
+                            <select id="utility-lobby-clean" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-lobby-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-lobby-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-lobby-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>History</h4>
+                        <input type="text" id="utility-lobby-history-search" placeholder="Cari tanggal/kondisi...">
+                        <table id="utility-lobby-history-table" style="width:100%; margin-top:10px;">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi AC</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-kitchen-area" class="section">
+                    <h2>Utility - Kitchen Area</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-kitchen-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Exhaust</label>
+                            <select id="utility-kitchen-exhaust" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Bunyi">Bunyi</option>
+                                <option value="Rusak">Rusak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kebersihan</label>
+                            <select id="utility-kitchen-clean" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-kitchen-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-kitchen-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-kitchen-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>History</h4>
+                        <input type="text" id="utility-kitchen-history-search" placeholder="Cari tanggal/kondisi...">
+                        <table id="utility-kitchen-history-table" style="width:100%; margin-top:10px;">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Exhaust</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-rooftop" class="section">
+                    <h2>Utility - Rooftop</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-rooftop-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Atap</label>
+                            <select id="utility-rooftop-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Baik">Baik</option>
+                                <option value="Bocor">Bocor</option>
+                                <option value="Perlu Perbaikan">Perlu Perbaikan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-rooftop-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-rooftop-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-rooftop-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-rooftop-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-rooftop-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Atap</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="utility-lift-room" class="section">
+                    <h2>Utility - Lift Room</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="utility-lift-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Lift</label>
+                            <select id="utility-lift-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Error">Error</option>
+                                <option value="Perlu Servis">Perlu Servis</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="utility-lift-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="utility-lift-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="utility-lift-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="utility-lift-history-search" placeholder="🔍 Cari berdasarkan tanggal atau kondisi...">
+                        <table id="utility-lift-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Lift</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Water Heater Sections -->
+                <section id="waterheater-WH-1" class="section">
+                    <h2>Water Heater 1</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="wh1-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Suhu Air Keluar (°C)</label>
+                            <input type="number" id="wh1-temperature" placeholder="Contoh: 55" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tekanan (Bar)</label>
+                            <input type="number" id="wh1-pressure" placeholder="Contoh: 2.5" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Status Burner</label>
+                            <select id="wh1-burner" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Kotor">Kotor</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Status Pompa</label>
+                            <select id="wh1-pump" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Berisik">Berisik</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="wh1-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="wh1-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </section>
+
+                <section id="waterheater-WH-2" class="section">
+                    <h2>Water Heater 2</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="wh2-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Suhu Air Keluar (°C)</label>
+                            <input type="number" id="wh2-temperature" placeholder="Contoh: 55" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tekanan (Bar)</label>
+                            <input type="number" id="wh2-pressure" placeholder="Contoh: 2.5" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Status Burner</label>
+                            <select id="wh2-burner" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Kotor">Kotor</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Status Pompa</label>
+                            <select id="wh2-pump" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Berisik">Berisik</option>
+                                <option value="Tidak Hidup">Tidak Hidup</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="wh2-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="wh2-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </section>
+
+                <!-- Genset Sections -->
+                <section id="genset-1" class="section">
+                    <h2>Genset 1 - 550Kva</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="genset1-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Meter Jam Kerja</label>
+                            <input type="number" id="genset1-hours" placeholder="Contoh: 15250" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Suhu Mesin (°C)</label>
+                            <input type="number" id="genset1-temperature" placeholder="Contoh: 65" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tekanan Oli (Bar)</label>
+                            <input type="number" id="genset1-oil-pressure" placeholder="Contoh: 3.5" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Level Bahan Bakar</label>
+                            <select id="genset1-fuel" required>
+                                <option value="">Pilih...</option>
+                                <option value="Penuh">Penuh</option>
+                                <option value="3/4 Tangki">3/4 Tangki</option>
+                                <option value="1/2 Tangki">1/2 Tangki</option>
+                                <option value="Kurang">Kurang</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Baterai</label>
+                            <select id="genset1-battery" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Lemah">Lemah</option>
+                                <option value="Korosi">Korosi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="genset1-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="genset1-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </section>
+
+                <section id="genset-2" class="section">
+                    <h2>Genset 2 - 550Kva</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="genset2-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Meter Jam Kerja</label>
+                            <input type="number" id="genset2-hours" placeholder="Contoh: 15250" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Suhu Mesin (°C)</label>
+                            <input type="number" id="genset2-temperature" placeholder="Contoh: 65" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tekanan Oli (Bar)</label>
+                            <input type="number" id="genset2-oil-pressure" placeholder="Contoh: 3.5" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Level Bahan Bakar</label>
+                            <select id="genset2-fuel" required>
+                                <option value="">Pilih...</option>
+                                <option value="Penuh">Penuh</option>
+                                <option value="3/4 Tangki">3/4 Tangki</option>
+                                <option value="1/2 Tangki">1/2 Tangki</option>
+                                <option value="Kurang">Kurang</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Baterai</label>
+                            <select id="genset2-battery" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Lemah">Lemah</option>
+                                <option value="Korosi">Korosi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="genset2-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="genset2-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </section>
+
+                <!-- Energy Sections -->
+                <section id="lvmdp" class="section">
+                    <h2>LVMDP</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="lvmdp-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Panel</label>
+                            <select id="lvmdp-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Overload">Overload</option>
+                                <option value="Error">Error</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="lvmdp-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="lvmdp-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="lvmdp-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="lvmdp-history-search" placeholder="🔍 Cari tanggal/kondisi...">
+                        <table id="lvmdp-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Panel</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Swimming Pool Sections -->
+                <section id="swimming-pool" class="section">
+                    <h2>Swimming Pool</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="swimming-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Air</label>
+                            <select id="swimming-water-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Jernih">Jernih</option>
+                                <option value="Keruh">Keruh</option>
+                                <option value="Perlu Treatment">Perlu Treatment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Kebersihan Kolam</label>
+                            <select id="swimming-clean" required>
+                                <option value="">Pilih...</option>
+                                <option value="Bersih">Bersih</option>
+                                <option value="Perlu Dibersihkan">Perlu Dibersihkan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="swimming-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="swimming-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="swimming-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="swimming-history-search" placeholder="🔍 Cari tanggal/kondisi...">
+                        <table id="swimming-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Air</th><th>Kebersihan</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Pump Room Sections -->
+                <section id="pump-room" class="section">
+                    <h2>Pump Room</h2>
+                    <div class="report-form">
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="pump-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kondisi Pompa</label>
+                            <select id="pump-condition" required>
+                                <option value="">Pilih...</option>
+                                <option value="Normal">Normal</option>
+                                <option value="Bunyi">Bunyi</option>
+                                <option value="Rusak">Rusak</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan</label>
+                            <textarea id="pump-notes" placeholder="Catatan tambahan..."></textarea>
+                        </div>
+                        <button id="pump-submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="pump-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History</h4>
+                        <input type="text" id="pump-history-search" placeholder="🔍 Cari tanggal/kondisi...">
+                        <table id="pump-history-table">
+                            <thead><tr><th>No</th><th>Tanggal</th><th>Kondisi Pompa</th><th>Catatan</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="project-ongoing" class="section">
+                    <h2>Project On Going</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Project Manual</h3>
+                        <div class="form-group">
+                            <label>Nama Project</label>
+                            <input type="text" id="project-name" placeholder="Masukkan nama project">
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="project-date">
+                        </div>
+                        <div class="form-group">
+                            <label>PIC</label>
+                            <input type="text" id="project-pic" placeholder="Nama penanggung jawab">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="project-status">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Tertunda">Tertunda</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea id="project-notes" placeholder="Keterangan tambahan (opsional)" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button id="project-submit-btn" class="btn btn-primary">Simpan Project</button>
+                        </div>
+                    </div>
+                    <div class="report-form" style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">Tabel Project</h3>
+                            <button id="project-export-btn" class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">📥 Export PDF</button>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Filter Periode:</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                                <select id="project-period-select" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.95em;">
+                                    <option value="today">Hari Ini</option>
+                                    <option value="week">Seminggu</option>
+                                    <option value="month">Sebulan</option>
+                                    <option value="year">Setahun</option>
+                                </select>
+                                <span style="color: #666; font-size: 0.9em;">atau</span>
+                                <input type="date" id="project-custom-date" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">Cari</button>
+                            </div>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table id="project-table" style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama Project</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="project-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Belum ada data. Tambahkan project di form atas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="report-form" style="margin-top: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Cari History Project</h3>
+                        <div class="form-group">
+                            <label>Cari Nama atau Tanggal</label>
+                            <input type="text" id="project-search" placeholder="Ketik nama atau tanggal (YYYY-MM-DD)">
+                        </div>
+                        <div style="overflow-x: auto; margin-top: 20px;">
+                            <table id="project-history-table">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama Project</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="project-history-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Tidak ada data history.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="schedule-training" class="section">
+                    <h2>Schedule Training</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Training Manual</h3>
+                        <div class="form-group">
+                            <label>Nama Training</label>
+                            <input type="text" id="training-name" placeholder="Masukkan nama training">
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="training-date">
+                        </div>
+                        <div class="form-group">
+                            <label>Durasi (jam)</label>
+                            <input type="number" id="training-duration" placeholder="Contoh: 2" step="0.5">
+                        </div>
+                        <div class="form-group">
+                            <label>PIC (Pembicara)</label>
+                            <input type="text" id="training-pic" placeholder="Nama pembicara">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="training-status">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="Planned">Planned</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Tertunda">Tertunda</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea id="training-notes" placeholder="Keterangan tambahan (opsional)" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button id="training-submit-btn" class="btn btn-primary">Simpan Training</button>
+                        </div>
+                    </div>
+                    <div class="report-form" style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">Tabel Training</h3>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Filter Periode:</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                                <select id="training-period-select" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.95em;">
+                                    <option value="today">Hari Ini</option>
+                                    <option value="week">Seminggu</option>
+                                    <option value="month">Sebulan</option>
+                                    <option value="year">Setahun</option>
+                                </select>
+                                <span style="color: #666; font-size: 0.9em;">atau</span>
+                                <input type="date" id="training-custom-date" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">Cari</button>
+                            </div>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table id="training-table" style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama Training</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Durasi</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="training-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Belum ada data. Tambahkan training di form atas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="report-form" style="margin-top: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Cari History Training</h3>
+                        <div class="form-group">
+                            <label>Cari Nama atau Tanggal</label>
+                            <input type="text" id="training-search" placeholder="Ketik nama atau tanggal (YYYY-MM-DD)">
+                        </div>
+                        <div style="overflow-x: auto; margin-top: 20px;">
+                            <table id="training-history-table">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama Training</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Durasi</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="training-history-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Tidak ada data history.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Schedule Sections -->
+                <section id="schedule-attendance" class="section">
+                    <h2>Schedule Masuk Kerja / Absensi</h2>
+                    <p>Kelola jadwal masuk kerja dan tracking absensi karyawan.</p>
+                    
+                    <!-- Manual Input Form -->
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Absensi Manual</h3>
+                        
+                        <div class="form-group">
+                            <label>Nama Karyawan</label>
+                            <input type="text" id="attendance-name" placeholder="Masukkan nama karyawan">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="attendance-date">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Shift</label>
+                            <select id="attendance-shift">
+                                <option value="">-- Pilih Shift --</option>
+                                <option value="Pagi (08:00-16:00)">Pagi (08:00-16:00)</option>
+                                <option value="Pagi (07:00-15:00)">Pagi (07:00-15:00)</option>
+                                <option value="Siang (15:00-22:00)">Siang (15:00-22:00)</option>
+                                <option value="Malam (23:00-07:00)">Malam (23:00-07:00)</option>
+                                <option value="EO (00:00-00:00)">EO (00:00-00:00)</option>
+                                <option value="Pagi 12 Jam (19:00-07:00)">Pagi 12 Jam (19:00-07:00)</option>
+                                <option value="Malam 12 Jam (19:00-07:00)">Malam 12 Jam (19:00-07:00)</option>
+                                <option value="MOD   (00:00-00:00)">MOD (00:00-00:00)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status Kehadiran</label>
+                            <select id="attendance-status">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="Hadir">Hadir</option>
+                                <option value="Sakit">Sakit</option>
+                                <option value="Cuti">Cuti</option>
+                                <option value="Izin">Izin</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea id="attendance-notes" placeholder="Keterangan tambahan (opsional)" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="attendance-submit-btn" class="btn btn-primary">Simpan Absensi</button>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Table -->
+                    <div class="report-form" style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">Tabel Absensi</h3>
+                            <button id="attendance-export-btn" class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">📥 Export PDF</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Filter Periode:</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                                <select id="attendance-period-select" onchange="filterAttendanceBySelect()" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.95em;">
+                                    <option value="today">Hari Ini</option>
+                                    <option value="week">Seminggu</option>
+                                    <option value="month">Sebulan</option>
+                                    <option value="year">Setahun</option>
+                                </select>
+                                <span style="color: #666; font-size: 0.9em;">atau</span>
+                                <input type="date" id="attendance-custom-date" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" onclick="filterAttendanceByCustomDate()" style="font-size: 0.9em; padding: 8px 15px;">Cari</button>
+                            </div>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table id="attendance-table" style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Shift</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendance-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Belum ada data. Tambahkan absensi di form atas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Search/Filter History -->
+                    <div class="report-form" style="margin-top: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Cari History Absensi</h3>
+                        
+                        <div class="form-group">
+                            <label>Cari Nama atau Tanggal</label>
+                            <input type="text" id="attendance-search" placeholder="Ketik nama atau tanggal (YYYY-MM-DD)">
+                        </div>
+
+                        <div style="overflow-x: auto; margin-top: 20px;">
+                            <table id="attendance-history-table">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Nama</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Shift</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendance-history-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Tidak ada data history.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="schedule-maintenance" class="section">
+                    <h2>Schedule Maintenance</h2>
+                    <p>Kelola jadwal maintenance peralatan dan fasilitas.</p>
+                    
+                    <!-- Manual Input Form -->
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Maintenance Manual</h3>
+                        
+                        <div class="form-group">
+                            <label>Tanggal</label>
+                            <input type="date" id="maintenance-date">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Aktivitas</label>
+                            <input type="text" id="maintenance-activity" placeholder="Contoh: Cleaning, Inspection, Repair">
+                        </div>
+
+                        <div class="form-group">
+                            <label>PIC (Person In Charge)</label>
+                            <input type="text" id="maintenance-pic" placeholder="Nama penanggung jawab">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select id="maintenance-status">
+                                <option value="">-- Pilih Status --</option>
+                                <option value="Scheduled">Scheduled</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Tertunda">Tertunda</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Keterangan</label>
+                            <textarea id="maintenance-notes" placeholder="Keterangan tambahan (opsional)" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="maintenance-submit-btn" class="btn btn-primary">Simpan Maintenance</button>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance Table -->
+                    <div class="report-form" style="margin-top: 30px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: #667eea; margin: 0;">Tabel Maintenance</h3>
+                            <button id="maintenance-export-btn" class="btn btn-primary" style="font-size: 0.9em; padding: 8px 15px;">📥 Export PDF</button>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <label>Filter Periode:</label>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                                <select id="maintenance-period-select" onchange="filterMaintenanceBySelect()" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.95em;">
+                                    <option value="today">Hari Ini</option>
+                                    <option value="week">Seminggu</option>
+                                    <option value="month">Sebulan</option>
+                                    <option value="year">Setahun</option>
+                                </select>
+                                <span style="color: #666; font-size: 0.9em;">atau</span>
+                                <input type="date" id="maintenance-custom-date" style="padding: 8px 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" onclick="filterMaintenanceByCustomDate()" style="font-size: 0.9em; padding: 8px 15px;">Cari</button>
+                            </div>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table id="maintenance-table" style="width: 100%; border-collapse: collapse; font-size: 0.95em;">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Aktivitas</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="maintenance-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Belum ada data. Tambahkan maintenance di form atas.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Search/Filter History -->
+                    <div class="report-form" style="margin-top: 30px;">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Cari History Maintenance</h3>
+                        
+                        <div class="form-group">
+                            <label>Cari Aktivitas atau Tanggal</label>
+                            <input type="text" id="maintenance-search" placeholder="Ketik aktivitas atau tanggal">
+                        </div>
+
+                        <div style="overflow-x: auto; margin-top: 20px;">
+                            <table id="maintenance-history-table">
+                                <thead>
+                                    <tr style="background-color: #f0f4ff; border-bottom: 2px solid #667eea;">
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">No</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Tanggal</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Aktivitas</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">PIC</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Status</th>
+                                        <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Keterangan</th>
+                                        <th style="padding: 12px; text-align: center; border: 1px solid #ddd;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="maintenance-history-tbody">
+                                    <tr>
+                                        <td colspan="7" style="padding: 20px; text-align: center; color: #999;">Tidak ada data history.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- POMEC Sections -->
+                <section id="pomec-info" class="section">
+                    <h2>What Is POMEC?</h2>
+                    <p>POMEC adalah singkatan dari...</p>
+                </section>
+                <!-- Daily Checklist - Level 3 sections -->
+                <section id="utility-check-1" class="section">
+                    <h2>Utility - Checklist 1</h2>
+                    <p>Form / checklist untuk Utility - Check 1.</p>
+                </section>
+
+                <section id="utility-check-2" class="section">
+                    <h2>Utility - Checklist 2</h2>
+                    <p>Form / checklist untuk Utility - Check 2.</p>
+                </section>
+
+                <section id="waterheater-check-1" class="section">
+                    <h2>Water Heater - Checklist 1</h2>
+                    <p>Form / checklist untuk Water Heater - Check 1.</p>
+                </section>
+
+                <section id="waterheater-check-2" class="section">
+                    <h2>Water Heater - Checklist 2</h2>
+                    <p>Form / checklist untuk Water Heater - Check 2.</p>
+                </section>
+
+                <section id="genset-check-1" class="section">
+                    <h2>Genset - Checklist 1</h2>
+                    <p>Form / checklist untuk Genset - Check 1.</p>
+                </section>
+
+                <section id="energy-check-1" class="section">
+                    <h2>Energy - Checklist 1</h2>
+                    <p>Form / checklist untuk Energy - Check 1.</p>
+                </section>
+
+                <section id="putr-check-1" class="section">
+                    <h2>PUTR - Checklist 1</h2>
+                    <p>Form / checklist untuk PUTR - Check 1.</p>
+                </section>
+
+                <section id="pump-check-1" class="section">
+                    <h2>Pump - Checklist 1</h2>
+                    <p>Form / checklist untuk Pump - Check 1.</p>
+                </section>
+
+                <!-- Monthly Sections -->
+                <section id="monthly-report" class="section">
+                    <h2>Monthly Report</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Monthly Report Manual</h3>
+                        <div class="form-group">
+                            <label>Bulan</label>
+                            <input type="month" id="monthly-month" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Total Laporan Harian</label>
+                            <input type="number" id="monthly-daily-reports" placeholder="Jumlah laporan harian" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kendala/Masalah yang Dihadapi</label>
+                            <textarea id="monthly-issues" placeholder="Deskripsikan kendala..." rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan/Rekomendasi</label>
+                            <textarea id="monthly-notes" placeholder="Catatan tambahan..." rows="4"></textarea>
+                        </div>
+                        <button id="monthly-report-submit" class="btn btn-primary">Simpan Report</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total laporan: <span id="monthly-report-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History Report</h4>
+                        <input type="text" id="monthly-report-search" placeholder="🔍 Cari berdasarkan bulan...">
+                        <table id="monthly-report-history-table">
+                            <thead>
+                                <tr><th>No</th><th>Bulan</th><th>Total Laporan</th><th>Kendala</th><th>Catatan</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="monthly-maintenance" class="section">
+                    <h2>Monthly Maintenance</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Monthly Maintenance Manual</h3>
+                        <div class="form-group">
+                            <label>Bulan</label>
+                            <input type="month" id="monthly-maint-month" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Maintenance yang Dilakukan</label>
+                            <input type="number" id="monthly-maint-count" placeholder="Jumlah maintenance" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Equipment yang Di-Maintenance</label>
+                            <textarea id="monthly-maint-equipment" placeholder="List equipment yang di-service..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Biaya Total Maintenance</label>
+                            <input type="number" id="monthly-maint-cost" placeholder="Rp. 0" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan/Status</label>
+                            <textarea id="monthly-maint-notes" placeholder="Catatan atau status maintenance..." rows="3"></textarea>
+                        </div>
+                        <button id="monthly-maint-submit" class="btn btn-primary">Simpan Maintenance</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total maintenance: <span id="monthly-maint-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History Maintenance</h4>
+                        <input type="text" id="monthly-maint-search" placeholder="🔍 Cari berdasarkan bulan...">
+                        <table id="monthly-maint-history-table">
+                            <thead>
+                                <tr><th>No</th><th>Bulan</th><th>Jumlah</th><th>Biaya (Rp)</th><th>Equipment</th><th>Status</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Training Record Section -->
+                <section id="training-record" class="section">
+                    <h2>Training Record</h2>
+                    <div class="report-form">
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Training Record (Training yang Sudah Dilaksanakan)</h3>
+                        <div class="form-group">
+                            <label>Nama Training</label>
+                            <input type="text" id="training-record-name" placeholder="Nama training yang dilaksanakan" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Dilaksanakan</label>
+                            <input type="date" id="training-record-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Durasi (jam)</label>
+                            <input type="number" id="training-record-duration" placeholder="Contoh: 2" step="0.5" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Instruktur/PIC</label>
+                            <input type="text" id="training-record-instructor" placeholder="Nama instruktur" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Peserta</label>
+                            <input type="number" id="training-record-participants" placeholder="Jumlah peserta yang hadir" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Topik/Materi</label>
+                            <textarea id="training-record-topic" placeholder="Topik atau materi yang diajarkan..." rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Output/Hasil Training</label>
+                            <textarea id="training-record-output" placeholder="Hasil atau luaran dari training..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Catatan/Feedback</label>
+                            <textarea id="training-record-notes" placeholder="Catatan atau feedback peserta..." rows="3"></textarea>
+                        </div>
+                        <button id="training-record-submit" class="btn btn-primary">Simpan Record</button>
+                    </div>
+                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total training dilaksanakan: <span id="training-record-summary">0</span></div>
+                    <div class="section-history" style="margin-top:20px;">
+                        <h4>📊 History Training Record</h4>
+                        <input type="text" id="training-record-search" placeholder="🔍 Cari berdasarkan nama training atau instruktur...">
+                        <table id="training-record-history-table">
+                            <thead>
+                                <tr><th>No</th><th>Nama Training</th><th>Tanggal</th><th>Instruktur</th><th>Peserta</th><th>Durasi</th><th>Topik</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <div class="footer-inner">
+                    <div class="footer-left">
+                        <img src="assets/Putih_PNG.png" alt="logo" class="footer-logo">
+                        <strong>Engineering Department</strong>
+                        <div class="small">Horison Ultima Menteng Jakarta</div>
+                    </div>
+                    <div class="footer-center">
+                        <div>Committed to Safety • Efficiency • Reliability</div>
+                        <div class="small">© <span id="year"></span> All Rights Reserved</div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="small">Engineered, Designed & Developed by</div>
+                        <a href="#" class="credit">Wawan Hendrawan</a>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script>
+        // set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <!-- SheetJS for client-side Excel/CSV parsing -->
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
