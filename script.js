@@ -12,6 +12,8 @@ function checkLogin() {
     }
     return JSON.parse(user);
 }
+const currentUser = checkLogin();
+
 
 // === ROLE MENU HANDLER ===
 function applyRoleMenu() {
@@ -1927,6 +1929,7 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
+
 
 
 
