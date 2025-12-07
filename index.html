@@ -1579,16 +1579,19 @@
     </div>
 
     <script>
-        // set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-   
-    <script type="module" src="firebase-init.js"></script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
-    <!-- SheetJS for client-side Excel/CSV parsing -->
-    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
-    <!-- Main Script -->
-    <script type="module" src="script.js"></script>
+<!-- Firebase harus module -->
+<script type="module" src="firebase-init.js"></script>
+
+<!-- Library external -->
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+<!-- MAIN SCRIPT (TIDAK BOLEH MODULE) -->
+<script src="script.js"></script>
+
 </body>
 </html>
+
 
