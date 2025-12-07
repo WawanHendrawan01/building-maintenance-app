@@ -4,33 +4,29 @@ const app = window.firebaseApp;
 console.log("🔥 Firebase DB Loaded in script.js:", db);
 
 // --- WAJIB PALING ATAS ---
-const currentUser = checkLogin();
-
-
-// Check if user is logged in
 function checkLogin() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-        // Redirect ke login page
-        window.location.href = 'login.html';
+    const user = localStorage.getItem("currentUser");
+    if (!user) {
+        window.location.href = "login.html";
         return null;
     }
-    return JSON.parse(currentUser);
+    return JSON.parse(user);
 }
+
+const currentUser = checkLogin();
+
 // === ROLE MENU HANDLER ===
 function applyRoleMenu() {
     if (!currentUser) return;
 
     const role = currentUser.role;
 
-    // MENU SELECTORS
     const menuReports     = document.querySelector('[href="#monthly-reports"]')?.closest('li');
     const menuTraining    = document.querySelector('[href="#training"]')?.closest('li');
     const menuTrainingRec = document.querySelector('[href="#training-records"]')?.closest('li');
     const menuAttendance  = document.querySelector('[href="#attendance"]')?.closest('li');
     const menuMaintenance = document.querySelector('[href="#maintenance"]')?.closest('li');
 
-    // Jika USER → sembunyikan menu admin
     if (role === "user") {
         menuReports     && (menuReports.style.display = "none");
         menuTraining    && (menuTraining.style.display = "none");
@@ -39,22 +35,12 @@ function applyRoleMenu() {
         menuMaintenance && (menuMaintenance.style.display = "none");
     }
 }
-    // Projects tetap tampil untuk admin & user → aman
 
-    // Jika USER → sembunyikan menu admin
-    if (role === "user") {
-        if (menuReports)     menuReports.style.display = "none";
-        if (menuTraining)    menuTraining.style.display = "none";
-        if (menuTrainingRec) menuTrainingRec.style.display = "none";
-        if (menuAttendance)  menuAttendance.style.display = "none";
-        if (menuMaintenance) menuMaintenance.style.display = "none";
-    }
-// ⬇️ TARO FUNGSI BARU INI DI LUAR applyRoleMenu
+// SECTION PROTECT
 function protectSections() {
     if (!currentUser) return;
 
     const role = currentUser.role;
-
     const restricted = [
         "monthly-reports",
         "training",
@@ -65,13 +51,13 @@ function protectSections() {
 
     if (role === "user") {
         const currentHash = window.location.hash.replace("#", "");
-
         if (restricted.includes(currentHash)) {
             alert("Anda tidak memiliki akses ke menu ini.");
             window.location.hash = "home";
         }
     }
 }
+
     // Jika ADMIN → semua menu tampil (default)
 
 // Get current user info
@@ -1946,4 +1932,5 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
+
 
