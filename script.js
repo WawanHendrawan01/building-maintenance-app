@@ -13,6 +13,55 @@ function checkLogin() {
     }
     return JSON.parse(currentUser);
 }
+// === ROLE MENU HANDLER ===
+function applyRoleMenu() {
+    if (!currentUser) return;
+
+    const role = currentUser.role;
+
+}
+
+    // MENU SELECTORS
+    const menuReports     = document.querySelector('[href="#monthly-reports"]')?.closest('li');
+    const menuTraining    = document.querySelector('[href="#training"]')?.closest('li');
+    const menuTrainingRec = document.querySelector('[href="#training-records"]')?.closest('li');
+    const menuAttendance  = document.querySelector('[href="#attendance"]')?.closest('li');
+    const menuMaintenance = document.querySelector('[href="#maintenance"]')?.closest('li');
+
+    // Projects tetap tampil untuk admin & user → aman
+
+    // Jika USER → sembunyikan menu admin
+    if (role === "user") {
+        if (menuReports)     menuReports.style.display = "none";
+        if (menuTraining)    menuTraining.style.display = "none";
+        if (menuTrainingRec) menuTrainingRec.style.display = "none";
+        if (menuAttendance)  menuAttendance.style.display = "none";
+        if (menuMaintenance) menuMaintenance.style.display = "none";
+    }
+// ⬇️ TARO FUNGSI BARU INI DI LUAR applyRoleMenu
+function protectSections() {
+    if (!currentUser) return;
+
+    const role = currentUser.role;
+
+    const restricted = [
+        "monthly-reports",
+        "training",
+        "training-records",
+        "attendance",
+        "maintenance"
+    ];
+
+    if (role === "user") {
+        const currentHash = window.location.hash.replace("#", "");
+
+        if (restricted.includes(currentHash)) {
+            alert("Anda tidak memiliki akses ke menu ini.");
+            window.location.hash = "home";
+        }
+    }
+}
+    // Jika ADMIN → semua menu tampil (default)
 
 // Get current user info
 const currentUser = checkLogin();
@@ -214,6 +263,12 @@ function addProject(data) {
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
+    // existing code...
+
+    applyRoleMenu();
+    protectSections();
+});
+
     // Set Home as active
     const homeLink = document.querySelector('a[href="#home"]');
     if (homeLink) {
@@ -269,7 +324,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } catch (e) {
         console.warn('UI init error', e);
     }
-});
+;
 
 // Initialize Utility import UI
 function initUtilityImportUI() {
@@ -1932,4 +1987,3 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
-
