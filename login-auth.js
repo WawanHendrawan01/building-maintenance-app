@@ -8,7 +8,7 @@ const auth = getAuth();
 async function loginNow() {
     const email = document.getElementById("email").value.trim();
     const pass  = document.getElementById("password").value.trim();
-    const msg   = document.getElementById("msg");
+    const msg   = document.getElementById("error-message");
 
     msg.classList.remove("show");
     msg.innerText = "";
@@ -35,3 +35,4 @@ async function loginNow() {
 
 // supaya bisa dipanggil dari HTML
 window.loginNow = loginNow;
+
