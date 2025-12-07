@@ -8,7 +8,7 @@ const auth = getAuth();
 async function loginNow() {
     const email = document.getElementById("email").value.trim();
     const pass  = document.getElementById("password").value.trim();
-    const msg   = document.getElementById("error-message");
+    const msg   = document.getElementById("msg");
 
     msg.classList.remove("show");
     msg.innerText = "";
@@ -31,3 +31,4 @@ async function loginNow() {
 }
 
 window.loginNow = loginNow;
+
