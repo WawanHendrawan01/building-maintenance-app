@@ -1,3 +1,4 @@
+console.log("🔥 login-auth.js loaded");
 import { 
     getAuth, 
     signInWithEmailAndPassword 
@@ -31,4 +32,5 @@ async function loginNow() {
 }
 
 window.loginNow = loginNow;
+
 
