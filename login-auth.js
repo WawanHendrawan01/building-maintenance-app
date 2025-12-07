@@ -14,17 +14,14 @@ async function loginNow() {
     msg.innerText = "";
 
     try {
-        // Login Firebase Auth
         const userCred = await signInWithEmailAndPassword(auth, email, pass);
 
-        // Simpan user ke localStorage
         localStorage.setItem("currentUser", JSON.stringify({
             uid: userCred.user.uid,
             email: email,
-            role: "user" // nanti kita perbaiki role di langkah berikut
+            role: "user"
         }));
 
-        // Redirect ke dashboard
         window.location.href = "index.html";
 
     } catch (err) {
@@ -33,6 +30,4 @@ async function loginNow() {
     }
 }
 
-// supaya bisa dipanggil dari HTML
 window.loginNow = loginNow;
-
