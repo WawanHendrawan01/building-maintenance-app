@@ -3,6 +3,10 @@ const app = window.firebaseApp;
 
 console.log("🔥 Firebase DB Loaded in script.js:", db);
 
+// --- WAJIB PALING ATAS ---
+const currentUser = checkLogin();
+
+
 // Check if user is logged in
 function checkLogin() {
     const currentUser = localStorage.getItem('currentUser');
@@ -1942,3 +1946,4 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
+
