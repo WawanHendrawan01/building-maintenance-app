@@ -19,8 +19,6 @@ function applyRoleMenu() {
 
     const role = currentUser.role;
 
-}
-
     // MENU SELECTORS
     const menuReports     = document.querySelector('[href="#monthly-reports"]')?.closest('li');
     const menuTraining    = document.querySelector('[href="#training"]')?.closest('li');
@@ -28,6 +26,15 @@ function applyRoleMenu() {
     const menuAttendance  = document.querySelector('[href="#attendance"]')?.closest('li');
     const menuMaintenance = document.querySelector('[href="#maintenance"]')?.closest('li');
 
+    // Jika USER → sembunyikan menu admin
+    if (role === "user") {
+        menuReports     && (menuReports.style.display = "none");
+        menuTraining    && (menuTraining.style.display = "none");
+        menuTrainingRec && (menuTrainingRec.style.display = "none");
+        menuAttendance  && (menuAttendance.style.display = "none");
+        menuMaintenance && (menuMaintenance.style.display = "none");
+    }
+}
     // Projects tetap tampil untuk admin & user → aman
 
     // Jika USER → sembunyikan menu admin
@@ -92,111 +99,59 @@ if (currentUser) {
     document.getElementById('logout-btn').style.display = 'block';
 }
 
-// Handle section navigation
-const navItems = document.querySelectorAll('.nav-item');
-const sections = document.querySelectorAll('.section');
+// --- NAVIGATION SYSTEM FIXED ---
 
-// Data storage
-let dailyReports = [];
-let monthlyReports = [];
-let trainingRecords = [];
-let projects = [];
-let attendanceSchedules = [];
-let maintenanceSchedules = [];
-// For import preview
-let __utility_parsed = null;
+// Ambil semua link menu utama & submenu
+const navItems = document.querySelectorAll(".nav-item");
+const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+const sections = document.querySelectorAll(".section");
 
-navItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-        // Jika ini dropdown toggle, jangan lanjut ke section
-        if (item.classList.contains('dropdown-toggle')) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleDropdown(item);
-            return;
-        }
-
-        e.preventDefault();
-        
-        // Hapus class active dari semua nav items
-        navItems.forEach(nav => nav.classList.remove('active'));
-        
-        // Tambah class active ke nav item yang diklik
-        item.classList.add('active');
-        
-        // Hapus class active dari semua sections
-        sections.forEach(section => section.classList.remove('active'));
-        
-        // Tampilkan section yang sesuai
-        const sectionId = item.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        }
-    });
-});
-
-// Handle dropdown toggle
-function toggleDropdown(element) {
-    const key = element.getAttribute('data-toggle');
+// Toggle dropdown menu
+function toggleDropdown(toggleEl) {
+    const key = toggleEl.dataset.toggle;
     if (!key) return;
 
-    // coba dua kemungkinan id: key + '-menu' atau key
-    const idsToTry = [key + '-menu', key];
-    let submenu = null;
-    
-    for (const id of idsToTry) {
-        const found = document.getElementById(id);
-        if (found) {
-            submenu = found;
-            break;
-        }
+    const submenu = document.getElementById(key);
+    if (!submenu) {
+        console.warn("Submenu tidak ditemukan:", key);
+        return;
     }
-    
-    if (!submenu) return;
-    
-    // Toggle show class
-    if (submenu.classList.contains('show')) {
-        submenu.classList.remove('show');
-    } else {
-        // Close other siblings first
-        const parent = submenu.parentElement;
-        if (parent) {
-            const siblings = parent.querySelectorAll('.submenu.show');
-            siblings.forEach(sibling => {
-                if (sibling !== submenu) {
-                    sibling.classList.remove('show');
-                }
-            });
-        }
-        submenu.classList.add('show');
-    }
+
+    submenu.classList.toggle("show");
 }
 
-// Handle submenu items
-const submenuItems = document.querySelectorAll('.submenu .nav-item');
-submenuItems.forEach(item => {
-    item.addEventListener('click', (e) => {
+// Handle dropdown ONLY (tidak pindah halaman)
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener("click", (e) => {
         e.preventDefault();
-        
-        // Hapus class active dari semua nav items
-        navItems.forEach(nav => nav.classList.remove('active'));
-        submenuItems.forEach(nav => nav.classList.remove('active'));
-        
-        // Tambah class active ke item yang diklik
-        item.classList.add('active');
-        
-        // Hapus class active dari semua sections
-        sections.forEach(section => section.classList.remove('active'));
-        
-        // Tampilkan section yang sesuai
-        const sectionId = item.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.add('active');
+        e.stopPropagation();
+        toggleDropdown(toggle);
+    });
+});
+
+// Handle nav-item biasa → pindah section
+navItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+        const href = item.getAttribute("href");
+
+        // Dropdown jangan trigger pindah section
+        if (item.classList.contains("dropdown-toggle")) return;
+
+        if (href && href.startsWith("#")) {
+            e.preventDefault();
+
+            navItems.forEach(nav => nav.classList.remove("active"));
+            item.classList.add("active");
+
+            const target = document.querySelector(href);
+            if (target) {
+                sections.forEach(s => s.classList.remove("active"));
+                target.classList.add("active");
+            }
         }
     });
 });
+
 
 // Update dashboard summary
 function updateDashboardSummary() {
