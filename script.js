@@ -60,9 +60,6 @@ function protectSections() {
 
     // Jika ADMIN → semua menu tampil (default)
 
-// Get current user info
-const currentUser = checkLogin();
-
 // Handle sidebar toggle
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const layout = document.querySelector('.layout');
@@ -1932,5 +1929,6 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
+
 
 
