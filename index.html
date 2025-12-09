@@ -1579,6 +1579,13 @@
     </div>
 
     <script>
+        const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+if (!currentUser) {
+    window.location.href = "login.html";
+}
+
+    <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
@@ -1593,5 +1600,6 @@
 
 </body>
 </html>
+
 
 
