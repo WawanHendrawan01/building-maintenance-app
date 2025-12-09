@@ -3,74 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engineering Department - Login</title>
-
-    <style>
-        /* ——— STYLE ORIGINAL KAMU TETAP ADA (tidak gue hapus) ——— */
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{
-            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-            min-height:100vh;display:flex;justify-content:center;align-items:center;
-        }
-        .login-container{
-            background:white;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,0.2);
-            width:100%;max-width:400px;padding:40px;
-        }
-        .login-header{text-align:center;margin-bottom:30px;}
-        .login-header h1{color:#333;font-size:1.8em;margin-bottom:8px;}
-        .login-header p{color:#667eea;font-size:0.95em;}
-        .login-header .subtitle{color:#999;font-size:0.85em;margin-top:5px;}
-
-        .form-group{margin-bottom:20px;}
-        label{display:block;margin-bottom:8px;color:#333;font-weight:600;font-size:0.95em;}
-        input[type="email"],input[type="password"]{
-            width:100%;padding:12px;border:1px solid #ddd;border-radius:5px;
-            font-size:0.95em;transition:border-color .3s ease;font-family:inherit;
-        }
-        input:focus{outline:none;border-color:#667eea;box-shadow:0 0 5px rgba(102,126,234,0.3);}
-
-        .login-btn{
-            width:100%;padding:12px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-            color:white;border:none;border-radius:5px;font-size:1em;font-weight:600;
-            cursor:pointer;transition:.3s ease;
-        }
-        .login-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,0.4);}
-        .error-message{
-            display:none;padding:12px;background:#f8d7da;color:#721c24;
-            border:1px solid #f5c6cb;border-radius:5px;margin-bottom:20px;text-align:center;
-        }
-        .error-message.show{display:block;}
-    </style>
+    <title>Login - Engineering Department</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="login-container">
+
+    <!-- HEADER -->
     <div class="login-header">
         <h1>Engineering Department</h1>
         <p>Reporting & Tracking System</p>
         <p class="subtitle">HORISON ULTIMA MENTENG JAKARTA</p>
     </div>
 
+    <!-- ERROR MESSAGE -->
     <div id="msg" class="error-message"></div>
 
+    <!-- ROLE SELECTOR -->
+    <div class="form-group">
+        <label for="role">Login sebagai:</label>
+        <select id="role">
+            <option value="">-- Pilih role --</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+    </div>
+
+    <!-- EMAIL -->
     <div class="form-group">
         <label for="email">Email Login Firebase:</label>
         <input type="email" id="email" placeholder="Masukkan email Firebase">
     </div>
 
+    <!-- PASSWORD -->
     <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" placeholder="Masukkan password">
     </div>
 
+    <!-- LOGIN BUTTON -->
     <button class="login-btn" onclick="loginNow()">Login</button>
+
 </div>
 
-<!-- Firebase -->
+<!-- Firebase Init -->
 <script type="module" src="firebase-init.js"></script>
 
-<!-- Login Auth Script -->
+<!-- Login Logic -->
 <script type="module" src="login-auth.js"></script>
 
 </body>
