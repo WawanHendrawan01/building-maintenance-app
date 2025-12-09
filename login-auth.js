@@ -14,6 +14,7 @@ async function loginNow() {
     msg.classList.remove("show");
     msg.innerText = "";
 
+const role = document.querySelector('input[name="role"]:checked')?.value;
     if (!role) {
         showError("Pilih role terlebih dahulu");
         return;
@@ -45,3 +46,4 @@ async function loginNow() {
 }
 
 window.loginNow = loginNow;
+
