@@ -22,15 +22,23 @@
     <div id="msg" class="error-message"></div>
 
     <!-- ROLE SELECTOR -->
-    <div class="form-group">
-        <label for="role">Login sebagai:</label>
-        <select id="role">
-            <option value="">-- Pilih role --</option>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-        </select>
-    </div>
+    <div class="role-selector">
+    <label>Pilih Role:</label>
+    <div class="role-options">
 
+        <div class="role-option">
+            <input type="radio" id="role-admin" name="role" value="admin">
+            <label for="role-admin">Admin</label>
+        </div>
+
+        <div class="role-option">
+            <input type="radio" id="role-user" name="role" value="user">
+            <label for="role-user">User</label>
+        </div>
+
+    </div>
+</div>
+    
     <!-- EMAIL -->
     <div class="form-group">
         <label for="email">Email Login Firebase:</label>
@@ -56,3 +64,4 @@
 
 </body>
 </html>
+
