@@ -5,13 +5,12 @@ console.log("🔥 Firebase DB Loaded in script.js:", db);
 
 // --- WAJIB PALING ATAS ---
 function checkLogin() {
-    const user = localStorage.getItem("currentUser");
-    if (!user) {
-        window.location.href = "login.html";
-        return null;
-    }
-    return JSON.parse(user);
+ const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+if (!currentUser) {
+    window.location.href = "login.html";
 }
+
 const currentUser = checkLogin();
 
 
@@ -1929,6 +1928,7 @@ function closeDailyOverviewHistory() {
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
 }
+
 
 
 
