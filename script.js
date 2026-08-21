@@ -216,7 +216,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     applyRoleMenu();
     protectSections();
-});
 
     // Set Home as active
     const homeLink = document.querySelector('a[href="#home"]');
@@ -1257,7 +1256,10 @@ function mapUtilityRows(json) {
     });
     return mapped;
 }
-
+let dailyReports = [];
+let monthlyReports = [];
+let trainingRecords = [];
+let projects = [];
 // Load sample data
 function loadSampleData() {
     // Sample daily reports
