@@ -3,16 +3,22 @@ const app = window.firebaseApp;
 
 console.log("🔥 Firebase DB Loaded in script.js:", db);
 
-// --- WAJIB PALING ATAS ---
-function checkLogin() {
- const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+// --- LOGIN CHECK ---
 
-if (!currentUser) {
-    window.location.href = "login.html";
+function checkLogin() {
+    const savedUser = JSON.parse(
+        localStorage.getItem("currentUser") || "null"
+    );
+
+    if (!savedUser) {
+        window.location.href = "login.html";
+        return null;
+    }
+
+    return savedUser;
 }
 
 const currentUser = checkLogin();
-
 
 // === ROLE MENU HANDLER ===
 function applyRoleMenu() {

@@ -6,7 +6,6 @@ import {
 const auth = getAuth();
 
 async function loginNow() {
-    const role = document.getElementById("role").value;
     const email = document.getElementById("email").value.trim();
     const pass  = document.getElementById("password").value.trim();
     const msg   = document.getElementById("msg");
