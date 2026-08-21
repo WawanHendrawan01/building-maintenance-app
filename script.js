@@ -1937,10 +1937,6 @@ function closeDailyOverviewHistory() {
     const historyBtn = document.getElementById('daily-overview-history-btn');
     historySection.style.display = 'none';
     historyBtn.textContent = '📋 History';
+
 }
-
-
-
-
-
-
+});
