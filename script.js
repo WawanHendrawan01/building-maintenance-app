@@ -217,6 +217,9 @@ let projects = [];
 let attendanceSchedules = [];
 let maintenanceSchedules = [];
 
+
+let utilityServerReports = JSON.parse(localStorage.getItem('utility_server_reports') || '[]');
+
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
     // existing code...
@@ -1295,7 +1298,6 @@ function loadSampleData() {
 
 // --- DAILY SECTION LOGIC ---
 // Utility - Server Room
-let utilityServerReports = JSON.parse(localStorage.getItem('utility_server_reports') || '[]');
 function saveUtilityServerReport() {
     const date = document.getElementById('utility-server-date').value;
     const condition = document.getElementById('utility-server-condition').value;
