@@ -210,6 +210,11 @@ function addProject(data) {
     updateDashboardSummary();
 }
 
+let dailyReports = [];
+let monthlyReports = [];
+let trainingRecords = [];
+let projects = [];
+
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
     // existing code...
@@ -1256,10 +1261,7 @@ function mapUtilityRows(json) {
     });
     return mapped;
 }
-let dailyReports = [];
-let monthlyReports = [];
-let trainingRecords = [];
-let projects = [];
+
 // Load sample data
 function loadSampleData() {
     // Sample daily reports
