@@ -215,6 +215,7 @@ let monthlyReports = [];
 let trainingRecords = [];
 let projects = [];
 let attendanceSchedules = [];
+let maintenanceSchedules = [];
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
