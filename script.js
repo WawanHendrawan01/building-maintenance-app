@@ -87,7 +87,9 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 
 // Display user info
 if (currentUser) {
-    document.getElementById('user-info').textContent = `${currentUser.name} (${currentUser.role.toUpperCase()})`;
+    document.getElementById('user-info').textContent =
+        `${currentUser.email} (${currentUser.role.toUpperCase()})`;
+
     document.getElementById('logout-btn').style.display = 'block';
 }
 
