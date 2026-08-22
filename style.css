@@ -460,57 +460,49 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .layout {
-        flex-direction: column;
-    }
 
+    /* Sidebar tetap di kiri */
     .sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        box-shadow: none;
-    }
-
-    .sidebar-nav ul {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .sidebar-nav li {
-        flex: 1;
-        min-width: 150px;
-        border-bottom: none;
-        border-right: 1px solid #2a2a2a;
-    }
-
-    .sidebar-nav li:last-child {
-        border-right: none;
-    }
-
-    .nav-item {
-        text-align: center;
-        border-radius: 0;
-    }
-
-    .submenu {
-        position: absolute;
-        top: 100%;
+        width: 250px;
+        min-width: 250px;
+        height: 100vh;
+        position: fixed;
         left: 0;
-        right: 0;
-        background-color: #2a2a2a;
-        z-index: 100;
+        top: 0;
+        z-index: 1000;
     }
 
+    /* Konten tetap di samping sidebar */
     .main-wrapper {
-        margin-left: 0;
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    .header {
+        padding: 20px;
     }
 
     .header h1 {
         font-size: 1.8em;
     }
 
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .header-user {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
     .dashboard-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: 1fr;
     }
 
     .list-item {
