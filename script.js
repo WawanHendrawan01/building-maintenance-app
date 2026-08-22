@@ -224,7 +224,7 @@ let utilityPumpReports = JSON.parse(
 );
 let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
 let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]');
-
+let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1535,7 +1535,6 @@ renderKitchenSummary();
 renderKitchenHistory();
 
 // Rooftop
-let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]');
 function saveRooftopReport() {
     const date = document.getElementById('utility-rooftop-date').value;
     const condition = document.getElementById('utility-rooftop-condition').value;
