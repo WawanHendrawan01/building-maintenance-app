@@ -1981,13 +1981,27 @@ function closeDailyOverviewHistory() {
 
 function loadWODashboard() {
 
+    console.log("🔥 loadWODashboard mulai...");
+
     const collection = window.firestoreCollection;
     const getDocs = window.firestoreGetDocs;
+    const db = window.firebaseDB;
+
+    if (!db || !collection || !getDocs) {
+        console.error("❌ Firebase belum siap", {
+            db,
+            collection,
+            getDocs
+        });
+        return;
+    }
 
     const woRef = collection(db, "workOrders");
 
     getDocs(woRef)
         .then((snapshot) => {
+
+            console.log("🔥 Total WO Firestore:", snapshot.size);
 
             let openCount = 0;
             let progressCount = 0;
@@ -1996,25 +2010,32 @@ function loadWODashboard() {
             snapshot.forEach((doc) => {
 
                 const data = doc.data();
+                console.log("WO:", doc.id, data);
+
                 const status = String(data.status || "").trim();
 
                 if (status === "Open") {
                     openCount++;
-
-                } else if (status === "In Progress") {
-                    progressCount++;
-
-                } else if (status === "Complete") {
-                    completeCount++;
                 }
 
+                else if (status === "In Progress") {
+                    progressCount++;
+                }
+
+                else if (status === "Complete") {
+                    completeCount++;
+                }
             });
 
-            document.getElementById("wo-open-count").textContent = openCount;
-            document.getElementById("wo-progress-count").textContent = progressCount;
-            document.getElementById("wo-complete-count").textContent = completeCount;
+            const openEl = document.getElementById("wo-open-count");
+            const progressEl = document.getElementById("wo-progress-count");
+            const completeEl = document.getElementById("wo-complete-count");
 
-            console.log("🔥 WO Dashboard:", {
+            if (openEl) openEl.textContent = openCount;
+            if (progressEl) progressEl.textContent = progressCount;
+            if (completeEl) completeEl.textContent = completeCount;
+
+            console.log("🔥 WO Dashboard berhasil:", {
                 openCount,
                 progressCount,
                 completeCount
@@ -2027,7 +2048,9 @@ function loadWODashboard() {
 }
 
 
-// Jalankan setelah Firebase siap
-window.addEventListener("firebaseReady", () => {
+// Tunggu Firebase benar-benar siap
+if (window.firebaseDB) {
     loadWODashboard();
-});
+} else {
+    window.addEventListener("firebaseReady", loadWODashboard, { once: true });
+}
