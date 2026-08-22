@@ -143,8 +143,12 @@ navItems.forEach(item => {
             item.classList.add("active");
 
             const target = document.querySelector(href);
+
             if (target) {
-                sections.forEach(s => s.classList.remove("active"));
+                document.querySelectorAll(".section, .page").forEach(s => {
+                    s.classList.remove("active");
+                });
+
                 target.classList.add("active");
             }
         }
