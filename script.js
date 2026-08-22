@@ -225,6 +225,7 @@ let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
 let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]');
 let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]');
 let liftRoomReports = JSON.parse(localStorage.getItem('lift_room_reports') || '[]');
+let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1599,7 +1600,6 @@ renderLiftRoomSummary();
 renderLiftRoomHistory();
 
 // LVMDP
-let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
 function saveLvmdpReport() {
     const date = document.getElementById('energy-lvmdp-date').value;
     const condition = document.getElementById('energy-lvmdp-condition').value;
