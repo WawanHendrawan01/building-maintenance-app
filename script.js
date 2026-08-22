@@ -217,7 +217,6 @@ let projects = [];
 let attendanceSchedules = [];
 let maintenanceSchedules = [];
 
-
 let utilityServerReports = JSON.parse(localStorage.getItem('utility_server_reports') || '[]');
 let utilityPumpReports = JSON.parse(
     localStorage.getItem('utility_pump_reports') || '[]'
@@ -225,6 +224,7 @@ let utilityPumpReports = JSON.parse(
 let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
 let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]');
 let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]');
+
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
