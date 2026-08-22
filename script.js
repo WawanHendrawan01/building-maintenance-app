@@ -219,7 +219,9 @@ let maintenanceSchedules = [];
 
 
 let utilityServerReports = JSON.parse(localStorage.getItem('utility_server_reports') || '[]');
-
+let utilityPumpReports = JSON.parse(
+    localStorage.getItem('utility_pump_reports') || '[]'
+);
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
     // existing code...
@@ -1363,7 +1365,6 @@ renderUtilityStandMeterSummary();
 renderUtilityStandMeterHistory();
 
 // Utility - Pump Room
-let utilityPumpReports = JSON.parse(localStorage.getItem('utility_pump_reports') || '[]');
 function saveUtilityPumpReport() {
     const date = document.getElementById('utility-pump-date').value;
     const condition = document.getElementById('utility-pump-condition').value;
