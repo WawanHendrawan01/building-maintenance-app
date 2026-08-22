@@ -550,6 +550,8 @@ min-height: 0;
     width: 100%;
     box-sizing: border-box;
     flex-shrink: 0;
+    margin-top: auto;
+flex-shrink: 0;
 }
 
 .footer-inner {
