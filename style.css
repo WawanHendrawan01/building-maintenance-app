@@ -545,11 +545,10 @@ body {
 
 /* Footer */
 .site-footer {
-    background-color: #0b0b0b;
-    color: #ddd;
-    padding: 18px 30px;
-    margin-top: 0;
+    margin-top: auto;
     width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
 .footer-inner {
