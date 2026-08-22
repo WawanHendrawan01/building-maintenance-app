@@ -103,9 +103,11 @@ const sections = document.querySelectorAll(".section");
 // Toggle dropdown menu
 function toggleDropdown(toggleEl) {
     const key = toggleEl.dataset.toggle;
-    if (!key) return;
 
-    const submenu = document.getElementById(key);
+    const submenu =
+        document.getElementById(key) ||
+        document.getElementById(key + "-menu");
+
     if (!submenu) {
         console.warn("Submenu tidak ditemukan:", key);
         return;
