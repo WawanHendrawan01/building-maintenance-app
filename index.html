@@ -92,22 +92,40 @@
     <div class="dashboard-grid">
 
     <!-- WORK ORDER -->
-    <div class="card">
-        <h3>🛠️ Work Order</h3>
-        <p style="margin-top: 15px;">Engineering Work Order Management</p>
+<div class="card">
+    <h3>🛠️ Work Order</h3>
+    <p style="margin-top: 15px;">Engineering Work Order Management</p>
 
-        <div style="margin-top: 20px;">
-            <p><strong>Status:</strong> <span class="status-active">● Active</span></p>
-        </div>
+    <div style="margin-top: 20px;">
+        <p>
+            <strong>System:</strong>
+            <span class="status-active">● Active</span>
+        </p>
 
-        <a
-            href="#work-order"
-            class="portal-button nav-item"
-            style="display: inline-block; margin-top: 20px;"
-        >
-            Open Work Order →
-        </a>
+        <p style="margin-top: 10px;">
+            <strong>Open WO:</strong>
+            <span id="wo-open-count">--</span>
+        </p>
+
+        <p style="margin-top: 8px;">
+            <strong>In Progress:</strong>
+            <span id="wo-progress-count">--</span>
+        </p>
+
+        <p style="margin-top: 8px;">
+            <strong>Completed:</strong>
+            <span id="wo-complete-count">--</span>
+        </p>
     </div>
+
+    <a
+        href="#work-order"
+        class="portal-button nav-item"
+        style="display: inline-block; margin-top: 20px;"
+    >
+        Open Work Order →
+    </a>
+</div>
 
     <!-- MONTHLY MAINTENANCE -->
     <div class="card">
