@@ -78,7 +78,11 @@
         Logout
     </button>
 </div>
-          <section id="home" class="section active">
+            </header>
+
+            <main class="main-content">
+                <!-- Home Section -->
+<section id="home" class="section active">
 
     <div class="page-header">
         <h1>⚡ BEAM Dashboard</h1>
@@ -87,19 +91,41 @@
 
     <div class="dashboard-grid">
 
-        <!-- WORK ORDER -->
-        <div class="card">
-            <h3>🛠️ Work Order</h3>
-            <p style="margin-top: 15px;">Engineering Work Order Management</p>
+    <!-- WORK ORDER -->
+    <div class="card">
+        <h3>🛠️ Work Order</h3>
+        <p style="margin-top: 15px;">Engineering Work Order Management</p>
 
-            <div style="margin-top: 20px;">
-                <p><strong>Status:</strong> <span class="status-active">● Active</span></p>
-            </div>
-
-            <a href="#work-order" class="portal-button nav-item">
-                Open Work Order →
-            </a>
+        <div style="margin-top: 20px;">
+            <p><strong>Status:</strong> <span class="status-active">● Active</span></p>
         </div>
+
+        <a
+            href="#work-order"
+            class="portal-button nav-item"
+            style="display: inline-block; margin-top: 20px;"
+        >
+            Open Work Order →
+        </a>
+    </div>
+
+    <!-- MONTHLY MAINTENANCE -->
+    <div class="card">
+        <h3>⚙️ Monthly Maintenance</h3>
+        <p style="margin-top: 15px;">Preventive Maintenance Management</p>
+
+        <div style="margin-top: 20px;">
+            <p><strong>Status:</strong> <span class="status-active">● Active</span></p>
+        </div>
+
+        <a
+            href="#monthly-maintenance"
+            class="portal-button nav-item"
+            style="display: inline-block; margin-top: 20px;"
+        >
+            Open Maintenance →
+        </a>
+    </div>
 
     <!-- ROOM HISTORY -->
     <div class="card">
@@ -135,9 +161,13 @@
         >
             View Daily Checklist →
         </a>
-    </div>
 
-</div>
+       </div> <!-- penutup card Daily Checklist -->
+
+</div> <!-- penutup dashboard-grid -->
+
+</section> <!-- penutup Home -->
+
                 <!-- DAILY CHECKLIST PORTAL -->
 <section id="daily-checklist" class="section">
     <div class="page-header">
