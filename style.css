@@ -238,9 +238,10 @@ body {
 
 /* Main Content */
 .main-content {
-    padding: 30px;
     flex: 1;
+    padding: 30px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .section {
