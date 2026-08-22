@@ -1622,11 +1622,25 @@ function renderLvmdpSummary() {
 }
 function renderLvmdpHistory(query = '') {
     const tbody = document.querySelector('#energy-lvmdp-history-table tbody');
+
+    if (!tbody) return;
+
     let data = lvmdpReports;
-    if (query) data = data.filter(r => r.date.includes(query) || r.condition.toLowerCase().includes(query.toLowerCase()));
-    data = data.sort((a,b) => new Date(b.date)-new Date(a.date));
-    tbody.innerHTML = data.length === 0 ? '<tr><td colspan="4" style="text-align:center;color:#999;">Tidak ada data.</td></tr>' :
-        data.map((r,i) => `<tr><td>${i+1}</td><td>${r.date}</td><td>${r.condition}</td><td>${r.notes||'-'}</td></tr>`).join('');
+
+    if (query) {
+        data = data.filter(r =>
+            r.date.includes(query) ||
+            r.condition.toLowerCase().includes(query.toLowerCase())
+        );
+    }
+
+    data = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    tbody.innerHTML = data.length === 0
+        ? '<tr><td colspan="4" style="text-align:center;color:#999;">Tidak ada data.</td></tr>'
+        : data.map((r, i) =>
+            `<tr><td>${i + 1}</td><td>${r.date}</td><td>${r.condition}</td><td>${r.notes || '-'}</td></tr>`
+        ).join('');
 }
 document.getElementById('energy-lvmdp-submit')?.addEventListener('click', saveLvmdpReport);
 document.getElementById('energy-lvmdp-history-search')?.addEventListener('input', e => renderLvmdpHistory(e.target.value));
