@@ -117,12 +117,15 @@ function toggleDropdown(toggleEl) {
 }
 
 // Handle dropdown ONLY (tidak pindah halaman)
-dropdownToggles.forEach(toggle => {
-    toggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleDropdown(toggle);
-    });
+document.addEventListener("click", (e) => {
+    const toggle = e.target.closest(".dropdown-toggle");
+
+    if (!toggle) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    toggleDropdown(toggle);
 });
 
 // Handle nav-item biasa → pindah section
