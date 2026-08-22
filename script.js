@@ -223,6 +223,8 @@ let utilityPumpReports = JSON.parse(
     localStorage.getItem('utility_pump_reports') || '[]'
 );
 let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
+let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]');
+
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1501,7 +1503,6 @@ renderLobbySummary();
 renderLobbyHistory();
 
 // Kitchen Area
-let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]');
 function saveKitchenReport() {
     const date = document.getElementById('utility-kitchen-date').value;
     const exhaust = document.getElementById('utility-kitchen-exhaust').value;
