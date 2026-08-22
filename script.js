@@ -228,6 +228,7 @@ let liftRoomReports = JSON.parse(localStorage.getItem('lift_room_reports') || '[
 let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
 let swimmingPoolReports = JSON.parse(localStorage.getItem('swimming_pool_reports') || '[]');
 let pumpRoomReports = JSON.parse(localStorage.getItem('pump_room_reports') || '[]');
+let projectRecords = JSON.parse(localStorage.getItem('project_records') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1712,7 +1713,6 @@ renderPumpRoomSummary();
 renderPumpRoomHistory();
 
 // --- PROJECT SECTION LOGIC ---
-let projectRecords = JSON.parse(localStorage.getItem('project_records') || '[]');
 function saveProjectRecord() {
     const name = document.getElementById('project-name').value;
     const date = document.getElementById('project-date').value;
