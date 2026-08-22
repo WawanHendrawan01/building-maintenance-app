@@ -229,6 +229,7 @@ let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
 let swimmingPoolReports = JSON.parse(localStorage.getItem('swimming_pool_reports') || '[]');
 let pumpRoomReports = JSON.parse(localStorage.getItem('pump_room_reports') || '[]');
 let projectRecords = JSON.parse(localStorage.getItem('project_records') || '[]');
+let trainingScheduleRecords = JSON.parse(localStorage.getItem('training_records') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1770,7 +1771,6 @@ renderProjectHistory();
 
 // --- TRAINING SECTION LOGIC ---
 // Note: trainingRecords already declared at top of file with data from attendanceSchedules
-let trainingScheduleRecords = JSON.parse(localStorage.getItem('training_records') || '[]');
 function saveTrainingRecord() {
     const name = document.getElementById('training-name').value;
     const date = document.getElementById('training-date').value;
