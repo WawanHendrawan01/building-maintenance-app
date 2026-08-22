@@ -1,10 +1,12 @@
-// firebase-init.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+
 import {
     getFirestore,
-    doc,
-    getDoc
+    collection,
+    getDocs,
+    onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
 
 // Firebase config
 const firebaseConfig = {
@@ -16,17 +18,21 @@ const firebaseConfig = {
     appId: "1:1054918024686:web:a13fabb4a15a0cbb9342ff"
 };
 
-// Init
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+const db = getFirestore(app);
 
-// 🔥 simpan ke global
+
+// Simpan ke global agar bisa dipakai script.js
 window.firebaseApp = app;
-window.firebaseDB  = db;
+window.firebaseDB = db;
 
-window.firebaseDoc = doc;
-window.firebaseGetDoc = getDoc;
 
-console.log("Firebase ready dari firebase-init.js");
+// Simpan fungsi Firestore ke global
+window.firestoreCollection = collection;
+window.firestoreGetDocs = getDocs;
+window.firestoreOnSnapshot = onSnapshot;
 
-window.dispatchEvent(new Event("firebaseReady"));
+
+console.log("🔥 Firebase ready dari firebase-init.js");

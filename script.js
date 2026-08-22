@@ -1,23 +1,7 @@
-// Firebase config
-const firebaseConfig = {
-    apiKey: "AIzaSyBAo7elPGYo4nxR2s0buYUItIN4J2JTyyU",
-    authDomain: "building-maintenance-app-b2f7a.firebaseapp.com",
-    projectId: "building-maintenance-app-b2f7a",
-    storageBucket: "building-maintenance-app-b2f7a.firebasestorage.app",
-    messagingSenderId: "1054918024686",
-    appId: "1:1054918024686:web:a13fabb4a15a0cbb9342ff"
-};
+const db = window.firebaseDB;
+const app = window.firebaseApp;
 
-// simpan ke global
-window.firebaseApp = app;
-window.firebaseDB = db;
-
-// simpan fungsi Firestore ke global
-window.firestoreCollection = collection;
-window.firestoreGetDocs = getDocs;
-window.firestoreOnSnapshot = onSnapshot;
-
-console.log("Firebase ready dari firebase-init.js");
+console.log("🔥 Firebase DB Loaded in script.js:", db);
 
 // --- LOGIN CHECK ---
 
