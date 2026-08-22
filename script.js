@@ -1614,7 +1614,11 @@ function saveLvmdpReport() {
     document.getElementById('energy-lvmdp-notes').value = '';
 }
 function renderLvmdpSummary() {
-    document.getElementById('energy-lvmdp-summary').textContent = lvmdpReports.length;
+    const summary = document.getElementById('energy-lvmdp-summary');
+
+    if (summary) {
+        summary.textContent = lvmdpReports.length;
+    }
 }
 function renderLvmdpHistory(query = '') {
     const tbody = document.querySelector('#energy-lvmdp-history-table tbody');
