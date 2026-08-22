@@ -222,6 +222,8 @@ let utilityServerReports = JSON.parse(localStorage.getItem('utility_server_repor
 let utilityPumpReports = JSON.parse(
     localStorage.getItem('utility_pump_reports') || '[]'
 );
+let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
+
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
     // existing code...
@@ -1467,7 +1469,6 @@ renderUtilityBohSummary();
 renderUtilityBohHistory();
 
 // Lobby Area
-let lobbyReports = JSON.parse(localStorage.getItem('lobby_reports') || '[]');
 function saveLobbyReport() {
     const date = document.getElementById('utility-lobby-date').value;
     const ac = document.getElementById('utility-lobby-ac').value;
