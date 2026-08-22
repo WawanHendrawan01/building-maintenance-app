@@ -1984,74 +1984,37 @@ function closeDailyOverviewHistory() {
 }
 });
 
-// ===============================
-// BEAM - WORK ORDER FIRESTORE
-// ===============================
+// ========================================
+// BEAM - WORK ORDER DASHBOARD
+// ========================================
+async function loadWODashboard() {
 
-function loadWODashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbxuD3uQH0Lag-k8_S-DfkjS3cuGmalppv0r_43sconJCaE_H7vt00KjSir-GZZCvYQX/exec";
 
-    console.log("🔥 loadWODashboard mulai...");
+    try {
 
-    const collection = window.firestoreCollection;
-    const getDocs = window.firestoreGetDocs;
-    const db = window.firebaseDB;
+        const response = await fetch(url);
 
-    if (!db || !collection || !getDocs) {
-        console.error("❌ Firebase belum siap", {
-            db,
-            collection,
-            getDocs
-        });
-        return;
+        if (!response.ok) {
+            throw new Error("Gagal membaca data WO");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("wo-open-count").textContent =
+            data.open ?? 0;
+
+        document.getElementById("wo-progress-count").textContent =
+            data.inProgress ?? 0;
+
+        document.getElementById("wo-complete-count").textContent =
+            data.completed ?? 0;
+
+        console.log("🔥 WO Dashboard Loaded:", data);
+
+    } catch (error) {
+
+        console.error("❌ WO Dashboard Error:", error);
+
     }
-
-    const woRef = collection(db, "workOrders");
-
-    getDocs(woRef)
-        .then((snapshot) => {
-
-            console.log("🔥 Total WO Firestore:", snapshot.size);
-
-            let openCount = 0;
-            let progressCount = 0;
-            let completeCount = 0;
-
-            snapshot.forEach((doc) => {
-
-                const data = doc.data();
-                console.log("WO:", doc.id, data);
-
-                const status = String(data.status || "").trim();
-
-                if (status === "Open") {
-                    openCount++;
-                }
-
-                else if (status === "In Progress") {
-                    progressCount++;
-                }
-
-                else if (status === "Complete") {
-                    completeCount++;
-                }
-            });
-
-            const openEl = document.getElementById("wo-open-count");
-            const progressEl = document.getElementById("wo-progress-count");
-            const completeEl = document.getElementById("wo-complete-count");
-
-            if (openEl) openEl.textContent = openCount;
-            if (progressEl) progressEl.textContent = progressCount;
-            if (completeEl) completeEl.textContent = completeCount;
-
-            console.log("🔥 WO Dashboard berhasil:", {
-                openCount,
-                progressCount,
-                completeCount
-            });
-
-        })
-        .catch((error) => {
-            console.error("❌ WO Firestore Error:", error);
-        });
 }
