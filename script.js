@@ -1974,26 +1974,3 @@ function closeDailyOverviewHistory() {
 
 }
 });
-// ===============================
-// BEAM - WORK ORDER DASHBOARD
-// ===============================
-
-async function loadWODashboard() {
-
-    const url = "https://script.google.com/macros/s/AKfycbye_zIlnLh7_iXflwx-BjSf2YMBMP5RSR4fxuvwJMsZB79xyBJlGIm4LQnDVuehJEo0/exec";
-
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        document.getElementById("wo-open-count").textContent = data.open ?? 0;
-        document.getElementById("wo-progress-count").textContent = data.inProgress ?? 0;
-        document.getElementById("wo-complete-count").textContent = data.completed ?? 0;
-
-        console.log("WO Dashboard Loaded:", data);
-
-    } catch (error) {
-        console.error("WO Dashboard Error:", error);
-    }
-}
-loadWODashboard();
