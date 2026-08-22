@@ -28,3 +28,5 @@ window.firebaseDoc = doc;
 window.firebaseGetDoc = getDoc;
 
 console.log("Firebase ready dari firebase-init.js");
+
+window.dispatchEvent(new Event("firebaseReady"));
