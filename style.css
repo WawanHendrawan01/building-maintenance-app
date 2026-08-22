@@ -18,17 +18,12 @@ body {
 
 /* Sidebar */
 .sidebar {
+    .sidebar {
     width: 250px;
-    background-color: #1a1a1a;
-    color: white;
-    padding: 0;
-    position: fixed;
-    left: 0;
-    top: 0;
     height: 100vh;
-    overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .layout.sidebar-collapsed .sidebar {
