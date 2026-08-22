@@ -1,13 +1,3 @@
-// firebase-init.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-
-import {
-    getFirestore,
-    collection,
-    getDocs,
-    onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-
 // Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyBAo7elPGYo4nxR2s0buYUItIN4J2JTyyU",
