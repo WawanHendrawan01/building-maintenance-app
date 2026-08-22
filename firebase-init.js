@@ -1,6 +1,10 @@
 // firebase-init.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+import {
+    getFirestore,
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -19,5 +23,8 @@ const db  = getFirestore(app);
 // 🔥 simpan ke global
 window.firebaseApp = app;
 window.firebaseDB  = db;
+
+window.firebaseDoc = doc;
+window.firebaseGetDoc = getDoc;
 
 console.log("Firebase ready dari firebase-init.js");
