@@ -1,7 +1,16 @@
-const db = window.firebaseDB;
-const app = window.firebaseApp;
+let db;
+let app;
 
-console.log("🔥 Firebase DB Loaded in script.js:", db);
+window.addEventListener("firebaseReady", () => {
+
+    db = window.firebaseDB;
+    app = window.firebaseApp;
+
+    console.log("🔥 Firebase DB Loaded in script.js:", db);
+
+    loadWODashboard();
+
+}, { once: true });
 
 // --- LOGIN CHECK ---
 
@@ -2045,12 +2054,4 @@ function loadWODashboard() {
         .catch((error) => {
             console.error("❌ WO Firestore Error:", error);
         });
-}
-
-
-// Tunggu Firebase benar-benar siap
-if (window.firebaseDB) {
-    loadWODashboard();
-} else {
-    window.addEventListener("firebaseReady", loadWODashboard, { once: true });
 }

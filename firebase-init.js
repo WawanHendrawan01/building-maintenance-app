@@ -36,3 +36,5 @@ window.firestoreOnSnapshot = onSnapshot;
 
 
 console.log("🔥 Firebase ready dari firebase-init.js");
+
+window.dispatchEvent(new Event("firebaseReady"));
