@@ -226,6 +226,7 @@ let kitchenReports = JSON.parse(localStorage.getItem('kitchen_reports') || '[]')
 let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]');
 let liftRoomReports = JSON.parse(localStorage.getItem('lift_room_reports') || '[]');
 let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
+let swimmingPoolReports = JSON.parse(localStorage.getItem('swimming_pool_reports') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1648,7 +1649,6 @@ renderLvmdpSummary();
 renderLvmdpHistory();
 
 // Swimming Pool
-let swimmingPoolReports = JSON.parse(localStorage.getItem('swimming_pool_reports') || '[]');
 function saveSwimmingPoolReport() {
     const date = document.getElementById('swimming-date').value;
     const waterCondition = document.getElementById('swimming-water-condition').value;
