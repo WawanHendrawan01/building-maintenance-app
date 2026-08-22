@@ -1974,3 +1974,60 @@ function closeDailyOverviewHistory() {
 
 }
 });
+
+// ===============================
+// BEAM - WORK ORDER FIRESTORE
+// ===============================
+
+function loadWODashboard() {
+
+    const collection = window.firestoreCollection;
+    const getDocs = window.firestoreGetDocs;
+
+    const woRef = collection(db, "workOrders");
+
+    getDocs(woRef)
+        .then((snapshot) => {
+
+            let openCount = 0;
+            let progressCount = 0;
+            let completeCount = 0;
+
+            snapshot.forEach((doc) => {
+
+                const data = doc.data();
+                const status = String(data.status || "").trim();
+
+                if (status === "Open") {
+                    openCount++;
+
+                } else if (status === "In Progress") {
+                    progressCount++;
+
+                } else if (status === "Complete") {
+                    completeCount++;
+                }
+
+            });
+
+            document.getElementById("wo-open-count").textContent = openCount;
+            document.getElementById("wo-progress-count").textContent = progressCount;
+            document.getElementById("wo-complete-count").textContent = completeCount;
+
+            console.log("🔥 WO Dashboard:", {
+                openCount,
+                progressCount,
+                completeCount
+            });
+
+        })
+        .catch((error) => {
+            console.error("❌ WO Firestore Error:", error);
+        });
+}
+
+
+// Jalankan setelah Firebase siap
+window.addEventListener("firebaseReady", () => {
+    loadWODashboard();
+});
