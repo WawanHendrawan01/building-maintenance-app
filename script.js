@@ -227,6 +227,7 @@ let rooftopReports = JSON.parse(localStorage.getItem('rooftop_reports') || '[]')
 let liftRoomReports = JSON.parse(localStorage.getItem('lift_room_reports') || '[]');
 let lvmdpReports = JSON.parse(localStorage.getItem('lvmdp_reports') || '[]');
 let swimmingPoolReports = JSON.parse(localStorage.getItem('swimming_pool_reports') || '[]');
+let pumpRoomReports = JSON.parse(localStorage.getItem('pump_room_reports') || '[]');
 
 // Set home as active on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -1681,7 +1682,6 @@ renderSwimmingPoolSummary();
 renderSwimmingPoolHistory();
 
 // Pump Room (Daily)
-let pumpRoomReports = JSON.parse(localStorage.getItem('pump_room_reports') || '[]');
 function savePumpRoomReport() {
     const date = document.getElementById('pump-date').value;
     const condition = document.getElementById('pump-condition').value;
