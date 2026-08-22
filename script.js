@@ -1996,3 +1996,4 @@ async function loadWODashboard() {
         console.error("WO Dashboard Error:", error);
     }
 }
+loadWODashboard();
