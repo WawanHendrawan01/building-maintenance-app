@@ -11,116 +11,54 @@
 <body>
     <div class="layout">
         <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>ENGINEERING DEPARTMENT</h2>
-                <p>HORISON ULTIMA MENTENG JAKARTA</p>
-            </div>
+        <nav class="sidebar-nav">
+    <ul>
 
-            <nav class="sidebar-nav">
-                <ul>
-                    <li><a href="#home" class="nav-item active">Home</a></li>
-                    <li><a href="#ems" class="nav-item">EMS</a></li>
-                    
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="daily">Daily ▼</a>
-                        <ul class="submenu" id="daily-menu">
-                                <li><a href="#daily-overview" class="nav-item">Daily Overview</a></li>
-                                <li class="nav-group">
-                                    <a href="#" class="nav-item dropdown-toggle" data-toggle="daily-checklist-menu">Daily Checklist ▼</a>
-<ul class="submenu" id="daily-checklist-menu">
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="utility-items">Utility ▼</a>
-                                            <ul class="submenu" id="utility-items">
-                                                <li><a href="#utility-stand-meter" class="nav-item">Utility - Stand Meter</a></li>
-                                                <li><a href="#utility-public-area" class="nav-item">Utility - Public Area</a></li>
-                                                 <li><a href="#utility-boh" class="nav-item">Utility - BOH</a></li>
-                                                  <li><a href="#utility-server-room" class="nav-item">Utility - Server Room</a></li>
-                                                   <li><a href="#utility-pump-room" class="nav-item">Utility - Pump Room</a></li>
-                                                    <li><a href="#utility-lobby-area" class="nav-item">Utility - Lobby Area</a></li>
-                                                     <li><a href="#utility-kitchen-area" class="nav-item">Utility - Kitchen Area</a></li>
-                                                      <li><a href="#utility-rooftop" class="nav-item">Utility - Rooftop</a></li>
-                                                       <li><a href="#utility-lift-room" class="nav-item">Utility - Lift Room</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="waterheater-items">Water Heater ▼</a>
-                                            <ul class="submenu" id="waterheater-items">
-                                                <li><a href="#waterheater-WH-1" class="nav-item">WH - 1</a></li>
-                                                <li><a href="#waterheater-WH-2" class="nav-item">WH - 2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="genset-items">Genset Area ▼</a>
-                                            <ul class="submenu" id="genset-items">
-                                                <li><a href="#genset-1" class="nav-item">Genset 1 - 550Kva</a></li>
-                                                <li><a href="#genset-2" class="nav-item">Genset 2 - 550Kva</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="lvmdp-items">LVMDP ▼</a>
-                                            <ul class="submenu" id="lvmdp-items">
-                                                <li><a href="#lvmdp" class="nav-item">LVMDP</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="swimming-pool-items">Swimming Pool ▼</a>
-                                            <ul class="submenu" id="swimming-pool-items">
-                                                <li><a href="#swimming-pool" class="nav-item">Swimming Pool</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-group">
-                                            <a href="#" class="nav-item dropdown-toggle" data-toggle="pump-room-items">Pump Room ▼</a>
-                                            <ul class="submenu" id="pump-room-items">
-                                                <li><a href="#pump-room" class="nav-item">Pump Room</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                        </ul>
-                    </li>
+        <!-- DASHBOARD -->
+        <li>
+            <a href="#home" class="nav-item active">
+                🏠 Dashboard
+            </a>
+        </li>
 
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="monthly">Monthly ▼</a>
-                        <ul class="submenu" id="monthly-menu">
-                            <li><a href="#monthly-report" class="nav-item">Monthly Report</a></li>
-                            <li><a href="#monthly-maintenance" class="nav-item">Monthly Maintenance</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="training">Training ▼</a>
-                        <ul class="submenu" id="training-menu">
-                            <li><a href="#schedule-training" class="nav-item">Schedule Training</a></li>
-                            <li><a href="#training-record" class="nav-item">Training Record</a></li>
-                        </ul>
-                    </li>
+        <!-- ENGINEERING REPORT -->
+        <li class="nav-group">
+            <a href="#" class="nav-item dropdown-toggle" data-toggle="engineering-report">
+                📑 Engineering Report ▼
+            </a>
 
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="project">Project ▼</a>
-                        <ul class="submenu" id="project-menu">
-                            <li><a href="#project-ongoing" class="nav-item">Project On Going</a></li>
-                        </ul>
-                    </li>
+            <ul class="submenu" id="engineering-report-menu">
 
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="schedule">Schedule ▼</a>
-                        <ul class="submenu" id="schedule-menu">
-                            <li><a href="#schedule-attendance" class="nav-item">Schedule Masuk Kerja</a></li>
-                            <li><a href="#schedule-maintenance" class="nav-item">Schedule Maintenance</a></li>
-                        </ul>
-                    </li>
+                <li>
+                    <a href="#daily-checklist" class="nav-item">
+                        📋 Daily Checklist
+                    </a>
+                </li>
 
-                    <li class="nav-group">
-                        <a href="#" class="nav-item dropdown-toggle" data-toggle="pomec">POMEC ▼</a>
-                        <ul class="submenu" id="pomec-menu">
-                            <li><a href="#pomec-info" class="nav-item">What Is POMEC?</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
+                <li>
+                    <a href="#work-order" class="nav-item">
+                        🛠️ Work Order
+                    </a>
+                </li>
 
+                <li>
+                    <a href="#room-history" class="nav-item">
+                        🏨 Room History
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#monthly-maintenance" class="nav-item">
+                        ⚙️ Monthly Maintenance
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
+    </ul>
+</nav>
         <!-- Main Content -->
         <div class="main-wrapper">
             <header class="header">
