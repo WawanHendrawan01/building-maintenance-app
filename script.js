@@ -8,10 +8,6 @@ const firebaseConfig = {
     appId: "1:1054918024686:web:a13fabb4a15a0cbb9342ff"
 };
 
-// Init
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
 // simpan ke global
 window.firebaseApp = app;
 window.firebaseDB = db;
