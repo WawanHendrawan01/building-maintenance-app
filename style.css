@@ -27,7 +27,7 @@ body {
     left: 0;
 }
 
-.layout.sidebar-collapsed .sidebar-nav {
+.layout.sidebar-collapsed .sidebar {
     transform: translateX(-100%);
 }
 
