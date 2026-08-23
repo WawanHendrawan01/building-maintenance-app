@@ -53,7 +53,7 @@ body {
 .sidebar-toggle {
     position: fixed;
     top: 15px;
-    left: 15px;
+    left: 300px;
     z-index: 9999;
     width: 45px;
     height: 40px;
