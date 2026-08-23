@@ -2258,6 +2258,12 @@ function renderEnergyTotals() {
         (laundry.laundryWater ?? 0);
 
     const actualBuildingCost = grossUtility - tenantRecharge;
+    const hotelNetRevenue = electricity.hotelNetRevenue ?? 0;
+
+const energyCostRevenueRatio = hotelNetRevenue > 0
+    ? (actualBuildingCost / hotelNetRevenue) * 100
+    : 0;
+
 
     document.getElementById("energy-gross-cost").textContent =
         formatEnergyRupiah(grossUtility);
@@ -2267,6 +2273,12 @@ function renderEnergyTotals() {
 
     document.getElementById("energy-actual-cost").textContent =
         formatEnergyRupiah(actualBuildingCost);
+
+        document.getElementById("energy-hotel-revenue").textContent =
+    formatEnergyRupiah(hotelNetRevenue);
+
+        document.getElementById("energy-cost-revenue-ratio").textContent =
+    `${energyCostRevenueRatio.toFixed(2)}%`;
 }
 
 async function loadEnergyCostHistory() {
