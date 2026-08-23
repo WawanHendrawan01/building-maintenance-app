@@ -76,11 +76,7 @@ body {
     top: 0;
     left: 0;
     background: #1a1a1a;
-    transition: transform 0.3s ease;
-}
 
-.sidebar-nav.sidebar-hidden {
-    transform: translateX(-100%);
 }
 
 .sidebar-nav ul {
