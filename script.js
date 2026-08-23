@@ -2340,12 +2340,22 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
 
             if (grossUtility <= 0) continue;
 
-            rows.push({
-                month,
-                grossUtility,
-                tenantRecharge,
-                actualBuildingCost: grossUtility - tenantRecharge
-            });
+const actualBuildingCost = grossUtility - tenantRecharge;
+
+const hotelNetRevenue = electricity.hotelNetRevenue ?? 0;
+
+const energyCostRevenueRatio = hotelNetRevenue > 0
+    ? (actualBuildingCost / hotelNetRevenue) * 100
+    : 0;
+
+rows.push({
+    month,
+    grossUtility,
+    tenantRecharge,
+    actualBuildingCost,
+    hotelNetRevenue,
+    energyCostRevenueRatio
+});
         } catch (error) {
             console.warn(`Energy history gagal untuk ${month}:`, error);
         }
@@ -2360,11 +2370,7 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
                 </td>
             </tr>
         `;
-        const hotelNetRevenue = electricity.hotelNetRevenue ?? 0;
-
-const energyCostRevenueRatio = hotelNetRevenue > 0
-    ? (actualBuildingCost / hotelNetRevenue) * 100
-    : 0;
+    
         return {
     month,
     grossUtility,
