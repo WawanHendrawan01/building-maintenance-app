@@ -2100,6 +2100,27 @@ const energySources = {
     laundry: null
 };
 
+function getEnergyMonthQuery() {
+    const selectedMonth =
+        document.getElementById("energy-month-filter")?.value || "";
+
+    return selectedMonth
+        ? `?month=${encodeURIComponent(selectedMonth)}`
+        : "";
+}
+
+function refreshEnergyCostDashboard() {
+    energySources.electricity = null;
+    energySources.water = null;
+    energySources.gas = null;
+    energySources.laundry = null;
+
+    loadEnergyCostDashboard();
+    loadWaterCostDashboard();
+    loadGasCostDashboard();
+    loadLaundryCostDashboard();
+}
+
 async function loadEnergyCostDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec" + getEnergyMonthQuery();
 
