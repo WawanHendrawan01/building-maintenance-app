@@ -2012,10 +2012,3 @@ async function loadWODashboard() {
 
     }
 }
-
-const sidebarToggle = document.getElementById("sidebarToggle");
-const layout = document.querySelector(".layout");
-
-sidebarToggle.addEventListener("click", () => {
-    layout.classList.toggle("sidebar-collapsed");
-});
