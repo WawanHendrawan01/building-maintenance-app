@@ -9,6 +9,7 @@ window.addEventListener("firebaseReady", () => {
     console.log("🔥 Firebase DB Loaded in script.js:", db);
 
     loadWODashboard();
+loadMaintenanceDashboard();
 
 }, { once: true });
 
@@ -2010,5 +2011,32 @@ async function loadWODashboard() {
 
         console.error("❌ WO Dashboard Error:", error);
 
+    }
+}
+
+async function loadMaintenanceDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbwdG4i-6ZAnKgkPnoYS0CiKNE93GmLx09tejM2aZ2q2D-Lb05Zlt0PVKBTIqUMBtMXeYw/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca data Monthly Maintenance");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("maintenance-due-count").textContent =
+            data.due ?? 0;
+
+        document.getElementById("maintenance-ongoing-count").textContent =
+            data.ongoing ?? 0;
+
+        document.getElementById("maintenance-complete-count").textContent =
+            data.completed ?? 0;
+
+        console.log("⚙️ Monthly Maintenance Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Monthly Maintenance Dashboard Error:", error);
     }
 }
