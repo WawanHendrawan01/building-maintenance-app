@@ -2419,3 +2419,47 @@ function renderEnergyHistoryChart(rows) {
         }
     });
 }
+
+function exportEnergyCostPDF() {
+    const section = document.getElementById("energy-cost");
+
+    if (!section) {
+        alert("Section Energy Cost tidak ditemukan.");
+        return;
+    }
+
+    if (typeof html2pdf === "undefined") {
+        alert("Library PDF belum berhasil dimuat.");
+        return;
+    }
+
+    const selectedMonth =
+        document.getElementById("energy-month-filter")?.value ||
+        "Bulan-Berjalan";
+
+    const options = {
+        margin: 10,
+        filename: `BEAM-Energy-Cost-${selectedMonth}-2026.pdf`,
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+        html2canvas: {
+            scale: 2,
+            useCORS: true
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "landscape"
+        },
+        pagebreak: {
+            mode: ["css", "legacy"]
+        }
+    };
+
+    html2pdf()
+        .set(options)
+        .from(section)
+        .save();
+}
