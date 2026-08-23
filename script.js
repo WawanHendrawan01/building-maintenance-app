@@ -11,6 +11,26 @@ window.addEventListener("firebaseReady", () => {
     loadWODashboard();
 loadMaintenanceDashboard();
 loadRoomHistoryDashboard();
+function getEnergyMonthQuery() {
+    const selectedMonth =
+        document.getElementById("energy-month-filter")?.value || "";
+
+    return selectedMonth
+        ? `?month=${encodeURIComponent(selectedMonth)}`
+        : "";
+}
+
+function refreshEnergyCostDashboard() {
+    energySources.electricity = null;
+    energySources.water = null;
+    energySources.gas = null;
+    energySources.laundry = null;
+
+    loadEnergyCostDashboard();
+    loadWaterCostDashboard();
+    loadGasCostDashboard();
+    loadLaundryCostDashboard();
+}
 loadEnergyCostDashboard();
 loadWaterCostDashboard();
 loadGasCostDashboard();
@@ -2081,7 +2101,7 @@ const energySources = {
 };
 
 async function loadEnergyCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec";
+    const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec"+ getEnergyMonthQuery();
 
     try {
         const response = await fetch(url);
@@ -2119,7 +2139,7 @@ renderEnergyTotals();
 }
 
 async function loadWaterCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycbwA1OYy7Re_2KDp5NKNltw36QoRm4RxZ0mzTK7KuJdiKsmvojwFTwNEhL8NM7dzcI1r/exec";
+    const url = "https://script.google.com/macros/s/AKfycbwA1OYy7Re_2KDp5NKNltw36QoRm4RxZ0mzTK7KuJdiKsmvojwFTwNEhL8NM7dzcI1r/exec"+ getEnergyMonthQuery();
 
     try {
         const response = await fetch(url);
@@ -2150,7 +2170,7 @@ function formatEnergyRupiah(value) {
 }
 
 async function loadGasCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/exec";
+    const url = "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/execc"+ getEnergyMonthQuery();
 
     try {
         const response = await fetch(url);
@@ -2177,7 +2197,7 @@ renderEnergyTotals();
 }
 
 async function loadLaundryCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycbz8SuK7z7DeDdP8oMJwbNDwIo9mRU8W9i-xDS-dQUt9RxamLDzp-vYk9W5dgeIlfjgaUQ/exec";
+    const url = "https://script.google.com/macros/s/AKfycbz8SuK7z7DeDdP8oMJwbNDwIo9mRU8W9i-xDS-dQUt9RxamLDzp-vYk9W5dgeIlfjgaUQ/exec"+ getEnergyMonthQuery();
 
     try {
         const response = await fetch(url);
