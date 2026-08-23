@@ -12,6 +12,7 @@ window.addEventListener("firebaseReady", () => {
 loadMaintenanceDashboard();
 loadRoomHistoryDashboard();
 loadEnergyCostDashboard();
+loadWaterCostDashboard();
 
 }, { once: true });
 
@@ -2103,6 +2104,27 @@ async function loadEnergyCostDashboard() {
         console.log("⚡ Energy Cost Dashboard Loaded:", data);
     } catch (error) {
         console.error("❌ Energy Cost Dashboard Error:", error);
+    }
+}
+
+async function loadWaterCostDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbwA1OYy7Re_2KDp5NKNltw36QoRm4RxZ0mzTK7KuJdiKsmvojwFTwNEhL8NM7dzcI1r/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca data Water Cost");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("energy-water-cost").textContent =
+            formatEnergyRupiah(data.grossWaterCost);
+
+        console.log("💧 Water Cost Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Water Cost Dashboard Error:", error);
     }
 }
 
