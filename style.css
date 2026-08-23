@@ -179,6 +179,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: margin-left 0.3s ease, width 0.3s ease;
     min-height: 100vh;
 }
 .layout.sidebar-collapsed .main-wrapper {
@@ -537,7 +538,7 @@ min-height: 0;
 
     .main-wrapper {
         margin-left: 0;
-        transition: margin-left 0.3s ease;
+        
     }
 
     .header h1 {
