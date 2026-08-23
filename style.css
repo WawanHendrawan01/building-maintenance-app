@@ -340,6 +340,26 @@ min-height: 0;
     transition: transform 0.3s ease;
 }
 
+.card p,
+.card strong,
+.card span {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.card h3 {
+    color: #fff;
+}
+
+.card .portal-button {
+    color: #fff;
+    font-weight: 600;
+}
+
+.card .portal-button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+}
+
 .card:hover {
     transform: translateY(-5px);
 }
