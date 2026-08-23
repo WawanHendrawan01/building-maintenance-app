@@ -2350,4 +2350,72 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
     `).join("");
 
     status.textContent = `${rows.length} bulan berhasil dimuat.`;
+    renderEnergyHistoryChart(rows);
+}
+
+let energyHistoryChart;
+
+function renderEnergyHistoryChart(rows) {
+    const canvas = document.getElementById("energy-history-chart");
+
+    if (!canvas || typeof Chart === "undefined") return;
+
+    if (energyHistoryChart) {
+        energyHistoryChart.destroy();
+    }
+
+    energyHistoryChart = new Chart(canvas, {
+        type: "line",
+        data: {
+            labels: rows.map(row => row.month),
+            datasets: [
+                {
+                    label: "Gross Utility",
+                    data: rows.map(row => row.grossUtility),
+                    borderColor: "#667eea",
+                    backgroundColor: "rgba(102, 126, 234, 0.12)",
+                    tension: 0.3
+                },
+                {
+                    label: "Tenant Recharge",
+                    data: rows.map(row => row.tenantRecharge),
+                    borderColor: "#f59e0b",
+                    backgroundColor: "rgba(245, 158, 11, 0.12)",
+                    tension: 0.3
+                },
+                {
+                    label: "Actual Building Cost",
+                    data: rows.map(row => row.actualBuildingCost),
+                    borderColor: "#16a34a",
+                    backgroundColor: "rgba(22, 163, 74, 0.12)",
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            interaction: {
+                mode: "index",
+                intersect: false
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label(context) {
+                            return `${context.dataset.label}: ${formatEnergyRupiah(context.raw)}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        callback(value) {
+                            return `Rp${Number(value).toLocaleString("id-ID")}`;
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
