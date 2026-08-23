@@ -13,6 +13,7 @@ loadMaintenanceDashboard();
 loadRoomHistoryDashboard();
 loadEnergyCostDashboard();
 loadWaterCostDashboard();
+loadGasCostDashboard();
 
 }, { once: true });
 
@@ -2134,4 +2135,28 @@ function formatEnergyRupiah(value) {
         currency: "IDR",
         maximumFractionDigits: 0
     }).format(value ?? 0);
+}
+
+async function loadGasCostDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca data Gas Cost");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("energy-gas-cost").textContent =
+            formatEnergyRupiah(data.grossGas);
+
+        document.getElementById("energy-laundry-gas-charge").textContent =
+            formatEnergyRupiah(data.laundryGas);
+
+        console.log("🔥 Gas Cost Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Gas Cost Dashboard Error:", error);
+    }
 }
