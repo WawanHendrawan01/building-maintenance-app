@@ -75,17 +75,11 @@ function protectSections() {
     // Jika ADMIN → semua menu tampil (default)
 
 // Handle sidebar toggle
-const sidebarToggle = document.getElementById('sidebar-toggle');
-const layout = document.querySelector('.layout');
-let sidebarCollapsed = false;
+const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebarNav = document.querySelector(".sidebar-nav");
 
-sidebarToggle?.addEventListener('click', () => {
-    sidebarCollapsed = !sidebarCollapsed;
-    if (sidebarCollapsed) {
-        layout.classList.add('sidebar-collapsed');
-    } else {
-        layout.classList.remove('sidebar-collapsed');
-    }
+sidebarToggle.addEventListener("click", () => {
+    sidebarNav.classList.toggle("sidebar-hidden");
 });
 
 // Handle logout
