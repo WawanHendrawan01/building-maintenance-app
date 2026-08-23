@@ -867,3 +867,43 @@ body:has(.login-container) {
 .error-message.show {
     display: block;
 }
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-details {
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+}
+
+#user-info {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+#user-role {
+    margin-left: 4px;
+    opacity: 0.85;
+}
+
+.logout-btn {
+    padding: 9px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-1px);
+}
