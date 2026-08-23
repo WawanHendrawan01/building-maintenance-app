@@ -1939,10 +1939,14 @@ function saveMonthlyMaintenance() {
     document.getElementById('monthly-maint-notes').value = '';
 }
 function renderMonthlyMaintSummary() {
-    document.getElementById('monthly-maint-summary').textContent = monthlyMaintenance.length;
+    const summary = document.getElementById('monthly-maint-summary');
+    if (!summary) return;
+
+    summary.textContent = monthlyMaintenance.length;
 }
 function renderMonthlyMaintHistory(query = '') {
     const tbody = document.querySelector('#monthly-maint-history-table tbody');
+    if (!tbody) return;
     let data = monthlyMaintenance;
     if (query) data = data.filter(r => r.month.includes(query));
     data = data.sort((a,b) => new Date(b.month)-new Date(a.month));
@@ -2508,4 +2512,3 @@ function exportEnergyCostPDF() {
         .from(section)
         .save();
 }
-
