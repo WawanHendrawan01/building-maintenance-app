@@ -200,7 +200,7 @@ body {
     cursor: pointer;
     padding: 5px 10px;
     transition: all 0.3s ease;
-    display: none;
+    display: flex;
 }
 
 .sidebar-toggle:hover {
