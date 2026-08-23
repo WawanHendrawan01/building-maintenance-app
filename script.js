@@ -10,6 +10,7 @@ window.addEventListener("firebaseReady", () => {
 
     loadWODashboard();
 loadMaintenanceDashboard();
+loadRoomHistoryDashboard();
 
 }, { once: true });
 
@@ -2038,5 +2039,32 @@ async function loadMaintenanceDashboard() {
         console.log("⚙️ Monthly Maintenance Dashboard Loaded:", data);
     } catch (error) {
         console.error("❌ Monthly Maintenance Dashboard Error:", error);
+    }
+}
+
+async function loadRoomHistoryDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbx4dZPoWBRW9jiOvr-mQTXBmvEnRZVbRvp2NZ7TECCN67g69tH3Yn2pMfP80JosNOgm/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca data Room History");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("room-history-total").textContent =
+            data.totalRepair ?? 0;
+
+        document.getElementById("room-history-today").textContent =
+            data.totalRoom ?? 0;
+
+        document.getElementById("room-history-status").textContent =
+            `${Math.round((data.completionRate ?? 0) * 100)}% Completed`;
+
+        console.log("🏨 Room History Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Room History Dashboard Error:", error);
     }
 }
