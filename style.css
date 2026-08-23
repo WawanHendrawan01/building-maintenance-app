@@ -49,6 +49,17 @@ body {
     color: #999;
     line-height: 1.2;
 }
+
+.sidebar-toggle {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1000;
+    padding: 8px 12px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
 .sidebar-nav {
     width: 250px;
     height: 100vh;
