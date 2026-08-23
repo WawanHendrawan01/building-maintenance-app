@@ -2268,3 +2268,83 @@ function renderEnergyTotals() {
     document.getElementById("energy-actual-cost").textContent =
         formatEnergyRupiah(actualBuildingCost);
 }
+
+async function loadEnergyCostHistory() {
+    const months = [
+        "Januari", "Februari", "Maret", "April",
+        "Mei", "Juni", "Juli", "Agustus",
+        "September", "Oktober", "November", "Desember"
+    ];
+
+    const endpoints = {
+        electricity: "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec",
+        water: "https://script.google.com/macros/s/AKfycbwA1OYy7Re_2KDp5NKNltw36QoRm4RxZ0mzTK7KuJdiKsmvojwFTwNEhL8NM7dzcI1r/exec",
+        gas: "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/exec",
+        laundry: "https://script.google.com/macros/s/AKfycbz8SuK7z7DeDdP8oMJwbNDwIo9mRU8W9i-xDS-dQUt9RxamLDzp-vYk9W5dgeIlfjgaUQ/exec"
+    };
+
+    const status = document.getElementById("energy-history-status");
+    const tbody = document.getElementById("energy-history-body");
+
+    status.textContent = "Loading monthly Energy Cost data...";
+    tbody.innerHTML = "";
+
+    const rows = [];
+
+    for (const month of months) {
+        try {
+            const query = `?month=${encodeURIComponent(month)}`;
+
+            const [electricity, water, gas, laundry] = await Promise.all([
+                fetch(endpoints.electricity + query).then(response => response.json()),
+                fetch(endpoints.water + query).then(response => response.json()),
+                fetch(endpoints.gas + query).then(response => response.json()),
+                fetch(endpoints.laundry + query).then(response => response.json())
+            ]);
+
+            const grossUtility =
+                (electricity.pln ?? 0) +
+                (water.grossWaterCost ?? 0) +
+                (gas.grossGas ?? 0);
+
+            const tenantRecharge =
+                (electricity.tenantRecharge ?? 0) +
+                (gas.laundryGas ?? 0) +
+                (laundry.laundryWater ?? 0);
+
+            if (grossUtility <= 0) continue;
+
+            rows.push({
+                month,
+                grossUtility,
+                tenantRecharge,
+                actualBuildingCost: grossUtility - tenantRecharge
+            });
+        } catch (error) {
+            console.warn(`Energy history gagal untuk ${month}:`, error);
+        }
+    }
+
+    if (!rows.length) {
+        status.textContent = "Tidak ada data bulanan yang dapat dibaca.";
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 20px;">
+                    Data belum tersedia.
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = rows.map(row => `
+        <tr>
+            <td>${row.month}</td>
+            <td>${formatEnergyRupiah(row.grossUtility)}</td>
+            <td>${formatEnergyRupiah(row.tenantRecharge)}</td>
+            <td>${formatEnergyRupiah(row.actualBuildingCost)}</td>
+        </tr>
+    `).join("");
+
+    status.textContent = `${rows.length} bulan berhasil dimuat.`;
+}

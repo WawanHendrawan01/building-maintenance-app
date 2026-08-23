@@ -576,6 +576,45 @@
         </div>
 
     </div>
+
+    <div class="report-form" style="margin-top: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap;">
+        <div>
+            <h3 style="color: #667eea; margin: 0;">📈 Energy Cost History</h3>
+            <p style="margin: 6px 0 0;">Gross utility, tenant recharge, and actual building cost per month.</p>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            onclick="loadEnergyCostHistory()"
+        >
+            Load 2026 History
+        </button>
+    </div>
+
+    <p id="energy-history-status" style="margin-top: 18px;"></p>
+
+    <div style="overflow-x: auto;">
+        <table class="table" style="width: 100%; margin-top: 10px;">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Gross Utility</th>
+                    <th>Tenant Recharge</th>
+                    <th>Actual Building Cost</th>
+                </tr>
+            </thead>
+            <tbody id="energy-history-body">
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 20px;">
+                        Click “Load 2026 History”.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </section>
 
 <!-- EMS Section --> 
