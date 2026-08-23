@@ -2018,3 +2018,10 @@ async function loadWODashboard() {
 
     }
 }
+
+const sidebarToggle = document.getElementById("sidebarToggle");
+const sidebarNav = document.querySelector(".sidebar-nav");
+
+sidebarToggle.addEventListener("click", () => {
+    sidebarNav.classList.toggle("sidebar-hidden");
+});
