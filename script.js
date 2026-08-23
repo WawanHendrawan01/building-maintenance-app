@@ -2384,7 +2384,7 @@ energyCostRevenueRatio: historyEnergyCostRevenueRatio
             <td>${formatEnergyRupiah(row.tenantRecharge)}</td>
             <td>${formatEnergyRupiah(row.actualBuildingCost)}</td>
             <td>${formatEnergyRupiah(row.hotelNetRevenue)}</td>
-            <td>${row.energyCostRevenueRatio.toFixed(2)}%</td>
+            <td>${(Number(row.energyCostRevenueRatio) || 0).toFixed(2)}%</td>
         </tr>
     `).join("");
 
