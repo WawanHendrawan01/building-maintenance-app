@@ -1904,10 +1904,14 @@ function saveMonthlyReport() {
     document.getElementById('monthly-notes').value = '';
 }
 function renderMonthlyReportSummary() {
-    document.getElementById('monthly-report-summary').textContent = monthlyReports.length;
+    const summary = document.getElementById('monthly-report-summary');
+    if (!summary) return;
+
+    summary.textContent = monthlyReports.length;
 }
 function renderMonthlyReportHistory(query = '') {
     const tbody = document.querySelector('#monthly-report-history-table tbody');
+    if (!tbody) return;
     let data = monthlyReports;
     if (query) data = data.filter(r => r.month.includes(query));
     data = data.sort((a,b) => new Date(b.month)-new Date(a.month));
