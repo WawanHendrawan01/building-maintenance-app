@@ -11,6 +11,7 @@ window.addEventListener("firebaseReady", () => {
     loadWODashboard();
 loadMaintenanceDashboard();
 loadRoomHistoryDashboard();
+loadEnergyCostDashboard();
 
 }, { once: true });
 
@@ -2067,4 +2068,48 @@ async function loadRoomHistoryDashboard() {
     } catch (error) {
         console.error("❌ Room History Dashboard Error:", error);
     }
+}
+
+async function loadEnergyCostDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca data Electricity Cost");
+        }
+
+        const data = await response.json();
+
+        document.getElementById("energy-gross-cost").textContent =
+            formatEnergyRupiah(data.pln);
+
+        document.getElementById("energy-tenant-charge").textContent =
+            formatEnergyRupiah(data.tenantRecharge);
+
+        document.getElementById("energy-actual-cost").textContent =
+            formatEnergyRupiah(data.actualBuildingCost);
+
+        document.getElementById("energy-electricity-cost").textContent =
+            formatEnergyRupiah(data.pln);
+
+        document.getElementById("energy-laundry-charge").textContent =
+            formatEnergyRupiah(data.laundry);
+
+        document.getElementById("energy-xl-charge").textContent =
+            formatEnergyRupiah(data.xl);
+
+        console.log("⚡ Energy Cost Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Energy Cost Dashboard Error:", error);
+    }
+}
+
+function formatEnergyRupiah(value) {
+    return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+    }).format(value ?? 0);
 }
