@@ -333,11 +333,18 @@ min-height: 0;
 .card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 25px;
-    border-radius: 8px;
+    min-height: 320px;
+    padding: 28px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 24px rgba(74, 53, 130, 0.20);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(74, 53, 130, 0.28);
 }
 
 .card p,
