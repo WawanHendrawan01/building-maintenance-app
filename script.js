@@ -2073,14 +2073,16 @@ async function loadRoomHistoryDashboard() {
     }
 }
 
-async function loadEnergyCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec";
 const energySources = {
     electricity: null,
     water: null,
     gas: null,
     laundry: null
 };
+
+async function loadEnergyCostDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec";
+
     try {
         const response = await fetch(url);
 
