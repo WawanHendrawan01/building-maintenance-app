@@ -2260,10 +2260,8 @@ function renderEnergyTotals() {
     const actualBuildingCost = grossUtility - tenantRecharge;
     const hotelNetRevenue = electricity.hotelNetRevenue ?? 0;
 
-const historyHotelNetRevenue = electricity.hotelNetRevenue ?? 0;
-
-const historyEnergyCostRevenueRatio = historyHotelNetRevenue > 0
-    ? (actualBuildingCost / historyHotelNetRevenue) * 100
+const energyCostRevenueRatio = hotelNetRevenue > 0
+    ? (actualBuildingCost / hotelNetRevenue) * 100
     : 0;
 
 
