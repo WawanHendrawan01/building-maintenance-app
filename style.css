@@ -1039,3 +1039,15 @@ body:has(.login-container) {
         grid-template-columns: 1fr;
     }
 }
+
+@media (min-width: 769px) {
+    .main-wrapper {
+        width: calc(100vw - 312px) !important;
+        max-width: none !important;
+    }
+
+    .header,
+    .main-content {
+        width: 100% !important;
+    }
+}
