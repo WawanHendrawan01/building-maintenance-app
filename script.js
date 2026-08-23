@@ -2279,6 +2279,11 @@ const energyCostRevenueRatio = hotelNetRevenue > 0
 
         document.getElementById("energy-cost-revenue-ratio").textContent =
     `${energyCostRevenueRatio.toFixed(2)}%`;
+        document.getElementById("dashboard-energy-actual").textContent =
+    formatEnergyRupiah(actualBuildingCost);
+
+        document.getElementById("dashboard-energy-ratio").textContent =
+    `${energyCostRevenueRatio.toFixed(2)}%`;
 }
 
 async function loadEnergyCostHistory() {
