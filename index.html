@@ -486,6 +486,52 @@
 
 </section>
 
+<!-- ENERGY COST -->
+<section id="energy-cost" class="section">
+
+    <div class="page-header">
+        <h1>⚡ Energy Cost</h1>
+        <p>Building utility, tenant recharge, and actual building cost monitoring.</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+            <h3>📊 Actual Building Cost</h3>
+            <p style="margin-top: 15px;">Net utility cost after tenant recharge.</p>
+
+            <div style="margin-top: 25px;">
+                <p><strong>Gross Utility Cost:</strong> <span id="energy-gross-cost">--</span></p>
+                <p style="margin-top: 10px;"><strong>Tenant Recharge:</strong> <span id="energy-tenant-charge">--</span></p>
+                <p style="margin-top: 10px;"><strong>Actual Building Cost:</strong> <span id="energy-actual-cost">--</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏢 Building Utility</h3>
+            <p style="margin-top: 15px;">Current building utility charges.</p>
+
+            <div style="margin-top: 25px;">
+                <p><strong>⚡ Electricity:</strong> <span id="energy-electricity-cost">--</span></p>
+                <p style="margin-top: 10px;"><strong>💧 Water:</strong> <span id="energy-water-cost">--</span></p>
+                <p style="margin-top: 10px;"><strong>🔥 Gas:</strong> <span id="energy-gas-cost">--</span></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏬 Tenant Utility</h3>
+            <p style="margin-top: 15px;">Utility costs recharged to tenants.</p>
+
+            <div style="margin-top: 25px;">
+                <p><strong>🧺 Laundry:</strong> <span id="energy-laundry-charge">--</span></p>
+                <p style="margin-top: 10px;"><strong>📡 XL:</strong> <span id="energy-xl-charge">--</span></p>
+                <p style="margin-top: 10px;"><strong>Status:</strong> <span>Waiting for EMS data</span></p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- EMS Section --> 
 <section id="ems" class="section"> 
     <h2>Engineering Management System</h2> 
