@@ -2014,8 +2014,8 @@ async function loadWODashboard() {
 }
 
 const sidebarToggle = document.getElementById("sidebarToggle");
-const sidebarNav = document.querySelector(".sidebar-nav");
+const layout = document.querySelector(".layout");
 
 sidebarToggle.addEventListener("click", () => {
-    sidebarNav.classList.toggle("sidebar-hidden");
+    layout.classList.toggle("sidebar-collapsed");
 });

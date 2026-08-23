@@ -27,8 +27,12 @@ body {
     left: 0;
 }
 
-.layout.sidebar-collapsed .sidebar {
+.layout.sidebar-collapsed .sidebar-nav {
     transform: translateX(-100%);
+}
+
+.layout.sidebar-collapsed .main-wrapper {
+    margin-left: 0;
 }
 
 .sidebar-header {
@@ -533,6 +537,7 @@ min-height: 0;
 
     .main-wrapper {
         margin-left: 0;
+        transition: margin-left 0.3s ease;
     }
 
     .header h1 {
