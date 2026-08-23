@@ -1974,44 +1974,60 @@
                     </div>
                 </section>
 
-                <section id="monthly-maintenance" class="section">
-                    <h2>Monthly Maintenance</h2>
-                    <div class="report-form">
-                        <h3 style="color: #667eea; margin-bottom: 20px;">Input Monthly Maintenance Manual</h3>
-                        <div class="form-group">
-                            <label>Bulan</label>
-                            <input type="month" id="monthly-maint-month" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah Maintenance yang Dilakukan</label>
-                            <input type="number" id="monthly-maint-count" placeholder="Jumlah maintenance" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Jenis Equipment yang Di-Maintenance</label>
-                            <textarea id="monthly-maint-equipment" placeholder="List equipment yang di-service..." rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Biaya Total Maintenance</label>
-                            <input type="number" id="monthly-maint-cost" placeholder="Rp. 0" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Catatan/Status</label>
-                            <textarea id="monthly-maint-notes" placeholder="Catatan atau status maintenance..." rows="3"></textarea>
-                        </div>
-                        <button id="monthly-maint-submit" class="btn btn-primary">Simpan Maintenance</button>
-                    </div>
-                    <div class="section-summary" style="margin-top:20px; color:#667eea;">Total maintenance: <span id="monthly-maint-summary">0</span></div>
-                    <div class="section-history" style="margin-top:20px;">
-                        <h4>📊 History Maintenance</h4>
-                        <input type="text" id="monthly-maint-search" placeholder="🔍 Cari berdasarkan bulan...">
-                        <table id="monthly-maint-history-table">
-                            <thead>
-                                <tr><th>No</th><th>Bulan</th><th>Jumlah</th><th>Biaya (Rp)</th><th>Equipment</th><th>Status</th></tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </section>
+               <section id="monthly-maintenance" class="section">
+    <div class="daily-hero">
+        <div>
+            <span class="daily-eyebrow">⚙️ PREVENTIVE MAINTENANCE</span>
+            <h2>Monthly Maintenance</h2>
+            <p>
+                Monitoring preventive maintenance aset engineering agar
+                seluruh equipment tetap aman, andal, dan siap beroperasi.
+            </p>
+        </div>
+
+        <div class="daily-status">
+            <span class="daily-status-dot"></span>
+            Monthly Maintenance Active
+        </div>
+    </div>
+
+    <div class="daily-overview">
+        <div class="daily-info-card">
+            <div class="daily-icon">📅</div>
+            <h3>Maintenance Schedule</h3>
+            <p>Lihat jadwal preventive maintenance seluruh aset.</p>
+        </div>
+
+        <div class="daily-info-card">
+            <div class="daily-icon">🛠️</div>
+            <h3>Asset Maintenance</h3>
+            <p>Pastikan setiap equipment mendapat perawatan sesuai jadwal.</p>
+        </div>
+
+        <div class="daily-info-card">
+            <div class="daily-icon">✅</div>
+            <h3>Completion Control</h3>
+            <p>Tinjau pekerjaan selesai, ongoing, dan aset yang perlu perhatian.</p>
+        </div>
+    </div>
+
+    <div class="daily-launch-card">
+        <div>
+            <h3>🚀 Open EMS Monthly Maintenance</h3>
+            <p>
+                Buka sistem EMS Master PM untuk mengelola jadwal dan
+                aktivitas preventive maintenance engineering.
+            </p>
+        </div>
+
+        <a href="https://docs.google.com/spreadsheets/d/11KzjNyYEsTRzVuV7cnOYb9E6uAfe9u3cvNn-Djk56rY/edit?gid=1399095145#gid=1399095145"
+           target="_blank"
+           rel="noopener"
+           class="daily-open-button">
+            Open EMS Monthly Maintenance →
+        </a>
+    </div>
+</section>
 
                 <!-- Training Record Section -->
                 <section id="training-record" class="section">
