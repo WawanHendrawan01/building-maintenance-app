@@ -2264,6 +2264,10 @@ const energyCostRevenueRatio = hotelNetRevenue > 0
     ? (actualBuildingCost / hotelNetRevenue) * 100
     : 0;
 
+const energyCostRevenueRatio = hotelNetRevenue > 0
+    ? (actualBuildingCost / hotelNetRevenue) * 100
+    : 0;
+
 
     document.getElementById("energy-gross-cost").textContent =
         formatEnergyRupiah(grossUtility);
@@ -2349,12 +2353,24 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
         status.textContent = "Tidak ada data bulanan yang dapat dibaca.";
         tbody.innerHTML = `
             <tr>
-                <td colspan="4" style="text-align: center; padding: 20px;">
+                <td colspan="6" style="text-align: center; padding: 20px;">
                     Data belum tersedia.
                 </td>
             </tr>
         `;
-        return;
+        const hotelNetRevenue = electricity.hotelNetRevenue ?? 0;
+
+const energyCostRevenueRatio = hotelNetRevenue > 0
+    ? (actualBuildingCost / hotelNetRevenue) * 100
+    : 0;
+        return {
+    month,
+    grossUtility,
+    tenantRecharge,
+    actualBuildingCost,
+    hotelNetRevenue,
+    energyCostRevenueRatio
+};
     }
 
     tbody.innerHTML = rows.map(row => `
@@ -2363,6 +2379,8 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
             <td>${formatEnergyRupiah(row.grossUtility)}</td>
             <td>${formatEnergyRupiah(row.tenantRecharge)}</td>
             <td>${formatEnergyRupiah(row.actualBuildingCost)}</td>
+            <td>${formatEnergyRupiah(row.hotelNetRevenue)}</td>
+            <td>${row.energyCostRevenueRatio.toFixed(2)}%</td>
         </tr>
     `).join("");
 
