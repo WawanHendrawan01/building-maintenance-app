@@ -2191,7 +2191,7 @@ function formatEnergyRupiah(value) {
 }
 
 async function loadGasCostDashboard() {
-    const url = "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/execc" + getEnergyMonthQuery();
+    const url = "https://script.google.com/macros/s/AKfycby_G6ljpozSJGJ1DnNebnxAhzNYjrvYsRojVIScMhx6v2NQSMyOAoHxJe9lRDwhReE7FQ/exec" + getEnergyMonthQuery();
 
     try {
         const response = await fetch(url);
