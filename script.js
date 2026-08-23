@@ -2030,7 +2030,7 @@ async function loadMaintenanceDashboard() {
             data.due ?? 0;
 
         document.getElementById("maintenance-ongoing-count").textContent =
-            data.ongoing ?? 0;
+            data.onSchedule ?? 0;
 
         document.getElementById("maintenance-complete-count").textContent =
             data.completed ?? 0;
