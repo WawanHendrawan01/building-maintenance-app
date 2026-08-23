@@ -2270,11 +2270,14 @@ function renderEnergyTotals() {
 }
 
 async function loadEnergyCostHistory() {
-    const months = [
-        "Januari", "Februari", "Maret", "April",
-        "Mei", "Juni", "Juli", "Agustus",
-        "September", "Oktober", "November", "Desember"
-    ];
+    const allMonths = [
+    "Januari", "Februari", "Maret", "April",
+    "Mei", "Juni", "Juli", "Agustus",
+    "September", "Oktober", "November", "Desember"
+];
+
+const currentMonthIndex = new Date().getMonth();
+const months = allMonths.slice(0, currentMonthIndex + 1);
 
     const endpoints = {
         electricity: "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec",
