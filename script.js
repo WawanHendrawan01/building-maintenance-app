@@ -14,6 +14,7 @@ loadRoomHistoryDashboard();
 loadEnergyCostDashboard();
 loadWaterCostDashboard();
 loadGasCostDashboard();
+loadLaundryCostDashboard();
 
 }, { once: true });
 
@@ -2074,7 +2075,12 @@ async function loadRoomHistoryDashboard() {
 
 async function loadEnergyCostDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec";
-
+const energySources = {
+    electricity: null,
+    water: null,
+    gas: null,
+    laundry: null
+};
     try {
         const response = await fetch(url);
 
@@ -2083,7 +2089,9 @@ async function loadEnergyCostDashboard() {
         }
 
         const data = await response.json();
-
+// di loadEnergyCostDashboard()
+energySources.electricity = data;
+renderEnergyTotals();
         document.getElementById("energy-gross-cost").textContent =
             formatEnergyRupiah(data.pln);
 
@@ -2119,7 +2127,9 @@ async function loadWaterCostDashboard() {
         }
 
         const data = await response.json();
-
+// di loadWaterCostDashboard()
+energySources.water = data;
+renderEnergyTotals();
         document.getElementById("energy-water-cost").textContent =
             formatEnergyRupiah(data.grossWaterCost);
 
@@ -2148,6 +2158,9 @@ async function loadGasCostDashboard() {
         }
 
         const data = await response.json();
+        // di loadGasCostDashboard()
+energySources.gas = data;
+renderEnergyTotals();
 
         document.getElementById("energy-gas-cost").textContent =
             formatEnergyRupiah(data.grossGas);
@@ -2159,4 +2172,56 @@ async function loadGasCostDashboard() {
     } catch (error) {
         console.error("❌ Gas Cost Dashboard Error:", error);
     }
+}
+
+async function loadLaundryCostDashboard() {
+    const url = "https://script.google.com/macros/s/AKfycbz8SuK7z7DeDdP8oMJwbNDwIo9mRU8W9i-xDS-dQUt9RxamLDzp-vYk9W5dgeIlfjgaUQ/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Gagal membaca Laundry Water Cost");
+        }
+
+        const data = await response.json();
+
+        energySources.laundry = data;
+
+        document.getElementById("energy-laundry-water-charge").textContent =
+            formatEnergyRupiah(data.laundryWater);
+
+        renderEnergyTotals();
+
+        console.log("🧺 Laundry Cost Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Laundry Cost Dashboard Error:", error);
+    }
+}
+
+function renderEnergyTotals() {
+    const { electricity, water, gas, laundry } = energySources;
+
+    if (!electricity || !water || !gas || !laundry) return;
+
+    const grossUtility =
+        (electricity.pln ?? 0) +
+        (water.grossWaterCost ?? 0) +
+        (gas.grossGas ?? 0);
+
+    const tenantRecharge =
+        (electricity.tenantRecharge ?? 0) +
+        (gas.laundryGas ?? 0) +
+        (laundry.laundryWater ?? 0);
+
+    const actualBuildingCost = grossUtility - tenantRecharge;
+
+    document.getElementById("energy-gross-cost").textContent =
+        formatEnergyRupiah(grossUtility);
+
+    document.getElementById("energy-tenant-charge").textContent =
+        formatEnergyRupiah(tenantRecharge);
+
+    document.getElementById("energy-actual-cost").textContent =
+        formatEnergyRupiah(actualBuildingCost);
 }
