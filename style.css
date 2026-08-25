@@ -1040,3 +1040,42 @@ body:has(.login-container) {
         grid-template-columns: 1fr;
     }
 }
+
+#home {
+    position: relative;
+}
+
+.live-datetime {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    min-width: 265px;
+    padding: 12px 18px;
+    border: 1px solid #d9d9ef;
+    border-radius: 14px;
+    text-align: right;
+    background: white;
+    box-shadow: 0 8px 18px rgba(35, 38, 80, 0.10);
+}
+
+.live-date {
+    display: block;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.live-time {
+    display: block;
+    margin-top: 3px;
+    color: #5d63d9;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+}
+
+@media (max-width: 800px) {
+    .live-datetime {
+        position: static;
+        width: fit-content;
+        margin: 16px 0 20px auto;
+    }
+}

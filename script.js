@@ -2567,3 +2567,32 @@ function exportEnergyCostPDF() {
         .from(section)
         .save();
 }
+
+function updateLiveDateTime() {
+    const container = document.getElementById("live-datetime");
+    if (!container) return;
+
+    const now = new Date();
+
+    const dateText = new Intl.DateTimeFormat("id-ID", {
+        timeZone: "Asia/Jakarta",
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    }).format(now);
+
+    const timeText = new Intl.DateTimeFormat("id-ID", {
+        timeZone: "Asia/Jakarta",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    }).format(now);
+
+    container.querySelector(".live-date").textContent = dateText;
+    container.querySelector(".live-time").textContent = timeText;
+}
+
+updateLiveDateTime();
+setInterval(updateLiveDateTime, 1000);
