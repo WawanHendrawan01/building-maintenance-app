@@ -39,6 +39,8 @@ loadLaundryCostDashboard();
 
 loadDailyChecklistDashboard();
 
+setInterval(autoRefreshBeamData, 5 * 60 * 1000);
+
 }, { once: true });
 
 // --- LOGIN CHECK ---
@@ -2596,3 +2598,14 @@ function updateLiveDateTime() {
 
 updateLiveDateTime();
 setInterval(updateLiveDateTime, 1000);
+
+function autoRefreshBeamData() {
+    console.log("🔄 Auto-refresh BEAM data...");
+
+    loadWODashboard();
+    loadMaintenanceDashboard();
+    loadRoomHistoryDashboard();
+    loadDailyChecklistDashboard();
+
+    refreshEnergyCostDashboard();
+}
