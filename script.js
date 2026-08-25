@@ -2112,6 +2112,7 @@ async function loadRoomHistoryDashboard() {
 // BEAM - Daily Checklist Card Dashboard
 // ========================================
 async function loadDailyChecklistDashboard() {
+
     const url =
         "https://script.google.com/macros/s/AKfycbwO0mEFGo_3feb5g9KErxyMzIpLz7r-lKeGgH2qyqm8AeIPW96NHedGHwJGFPHds5ng/exec";
 
@@ -2137,8 +2138,11 @@ async function loadDailyChecklistDashboard() {
         document.getElementById("daily-normal").textContent =
             data.normal ?? 0;
 
-        document.getElementById("daily-attention").textContent =
-            `${data.areaNotSubmitted ?? 0} Pending / ${data.abnormal ?? 0} Abnormal`;
+        document.getElementById("daily-area-not-submitted").textContent =
+    data.areaNotSubmitted ?? 0;
+
+        document.getElementById("daily-abnormal").textContent =
+    data.abnormal ?? 0;
 
         console.log("📋 Daily Checklist Dashboard Loaded:", data);
     } catch (error) {
