@@ -30,12 +30,13 @@ function refreshEnergyCostDashboard() {
     loadWaterCostDashboard();
     loadGasCostDashboard();
     loadLaundryCostDashboard();
-    loadDailyChecklistDashboard();
+   
 }
 loadEnergyCostDashboard();
 loadWaterCostDashboard();
 loadGasCostDashboard();
 loadLaundryCostDashboard();
+loadDailyChecklistDashboard();
 
 }, { once: true });
 
