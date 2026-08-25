@@ -2622,6 +2622,11 @@ async function loadDailyElectricityCost() {
     const url =
         "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec?mode=daily";
 
+    const setText = (id, value) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
+    };
+
     try {
         const response = await fetch(url);
 
@@ -2636,37 +2641,73 @@ async function loadDailyElectricityCost() {
         }
 
         if (!data.found) {
-            document.getElementById("electricity-daily-date").textContent =
-                "Daily data belum tersedia";
+            setText(
+                "electricity-daily-date",
+                "Daily data belum tersedia"
+            );
             return;
         }
 
-        document.getElementById("electricity-daily-date").textContent =
-                `Data Date: ${data.dataDate}`;
+        const ratio =
+            `${((data.electricityCostToRevenue || 0) * 100).toFixed(2)}%`;
 
-        document.getElementById("electricity-daily-pln").textContent =
-            formatEnergyRupiah(data.pln);
+        // Halaman Electricity Daily
+        setText(
+            "electricity-daily-date",
+            `Data Date: ${data.dataDate}`
+        );
+        setText("electricity-daily-pln", formatEnergyRupiah(data.pln));
+        setText(
+            "electricity-daily-tenant",
+            formatEnergyRupiah(data.totalTenant)
+        );
+        setText(
+            "electricity-daily-actual",
+            formatEnergyRupiah(data.actualBuilding)
+        );
+        setText(
+            "electricity-daily-laundry",
+            formatEnergyRupiah(data.laundry)
+        );
+        setText(
+            "electricity-daily-xl",
+            formatEnergyRupiah(data.xl)
+        );
 
-        document.getElementById("electricity-daily-tenant").textContent =
-            formatEnergyRupiah(data.totalTenant);
+        setText(
+            "electricity-daily-average-room",
+            formatEnergyRupiah(data.averagePerOccupiedRoom)
+        );
+        setText(
+            "electricity-daily-revenue",
+            formatEnergyRupiah(data.hotelRevenue)
+        );
+        setText("electricity-daily-ratio", ratio);
 
-        document.getElementById("electricity-daily-actual").textContent =
-            formatEnergyRupiah(data.actualBuilding);
+        // Card Daily Electricity di Dashboard
+        setText("dashboard-daily-electricity-date", data.dataDate);
+        setText(
+            "dashboard-daily-electricity-pln",
+            formatEnergyRupiah(data.pln)
+        );
+        setText(
+            "dashboard-daily-electricity-tenant",
+            formatEnergyRupiah(data.totalTenant)
+        );
+        setText(
+            "dashboard-daily-electricity-actual",
+            formatEnergyRupiah(data.actualBuilding)
+        );
 
-        document.getElementById("electricity-daily-laundry").textContent =
-            formatEnergyRupiah(data.laundry);
-
-        document.getElementById("electricity-daily-xl").textContent =
-            formatEnergyRupiah(data.xl);
-        const dashboardDate = document.getElementById("dashboard-daily-electricity-date");
-const dashboardPln = document.getElementById("dashboard-daily-electricity-pln");
-const dashboardTenant = document.getElementById("dashboard-daily-electricity-tenant");
-const dashboardActual = document.getElementById("dashboard-daily-electricity-actual");
-
-if (dashboardDate) dashboardDate.textContent = data.dataDate;
-if (dashboardPln) dashboardPln.textContent = formatEnergyRupiah(data.pln);
-if (dashboardTenant) dashboardTenant.textContent = formatEnergyRupiah(data.totalTenant);
-if (dashboardActual) dashboardActual.textContent = formatEnergyRupiah(data.actualBuilding);  
+        setText(
+            "dashboard-daily-electricity-average",
+            formatEnergyRupiah(data.averagePerOccupiedRoom)
+        );
+        setText(
+            "dashboard-daily-electricity-revenue",
+            formatEnergyRupiah(data.hotelRevenue)
+        );
+        setText("dashboard-daily-electricity-ratio", ratio);
 
         console.log("⚡ Daily Electricity Loaded:", data);
     } catch (error) {
