@@ -2658,17 +2658,15 @@ async function loadDailyElectricityCost() {
 
         document.getElementById("electricity-daily-xl").textContent =
             formatEnergyRupiah(data.xl);
-        document.getElementById("dashboard-daily-electricity-date")?.textContent =
-        data.dataDate;
+        const dashboardDate = document.getElementById("dashboard-daily-electricity-date");
+const dashboardPln = document.getElementById("dashboard-daily-electricity-pln");
+const dashboardTenant = document.getElementById("dashboard-daily-electricity-tenant");
+const dashboardActual = document.getElementById("dashboard-daily-electricity-actual");
 
-        document.getElementById("dashboard-daily-electricity-pln")?.textContent =
-    formatEnergyRupiah(data.pln);
-
-        document.getElementById("dashboard-daily-electricity-tenant")?.textContent =
-    formatEnergyRupiah(data.totalTenant);
-
-        document.getElementById("dashboard-daily-electricity-actual")?.textContent =
-    formatEnergyRupiah(data.actualBuilding);    
+if (dashboardDate) dashboardDate.textContent = data.dataDate;
+if (dashboardPln) dashboardPln.textContent = formatEnergyRupiah(data.pln);
+if (dashboardTenant) dashboardTenant.textContent = formatEnergyRupiah(data.totalTenant);
+if (dashboardActual) dashboardActual.textContent = formatEnergyRupiah(data.actualBuilding);  
 
         console.log("⚡ Daily Electricity Loaded:", data);
     } catch (error) {
