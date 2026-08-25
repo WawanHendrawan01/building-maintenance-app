@@ -37,7 +37,6 @@ loadWaterCostDashboard();
 loadGasCostDashboard();
 loadLaundryCostDashboard();
 
-console.log("📋 Starting Daily Checklist fetch...");
 loadDailyChecklistDashboard();
 
 }, { once: true });
