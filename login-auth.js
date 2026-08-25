@@ -35,19 +35,38 @@ if (
 }
 
     try {
-        const userCred = await signInWithEmailAndPassword(auth, email, pass);
+    const userCred = await signInWithEmailAndPassword(auth, email, pass);
 
-        localStorage.setItem("currentUser", JSON.stringify({
-            uid: userCred.user.uid,
-            email: email,
-            role: role
-        }));
+    const adminEmails = [
+        "wawan.hendrawan1130@gmail.com"
+    ];
 
-        window.location.href = "index.html";
+    const actualRole = adminEmails.includes(
+        userCred.user.email.toLowerCase()
+    )
+        ? "admin"
+        : "user";
 
-    } catch (err) {
-        showError(err.message);
+    if (role !== actualRole) {
+        showError(
+            actualRole === "user"
+                ? "Akun ini hanya dapat login sebagai User."
+                : "Akun Admin harus memilih role Admin."
+        );
+        return;
     }
+
+    localStorage.setItem("currentUser", JSON.stringify({
+        uid: userCred.user.uid,
+        email: userCred.user.email,
+        role: actualRole
+    }));
+
+    window.location.href = "index.html";
+
+} catch (err) {
+    showError(err.message);
+}
 
     function showError(msgText) {
         msg.innerText = msgText;
