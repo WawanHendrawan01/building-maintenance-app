@@ -2642,7 +2642,7 @@ async function loadDailyElectricityCost() {
         }
 
         document.getElementById("electricity-daily-date").textContent =
-            `Data Date: ${data.dataDate}`;
+                `Data Date: ${data.dataDate}`;
 
         document.getElementById("electricity-daily-pln").textContent =
             formatEnergyRupiah(data.pln);
