@@ -22,6 +22,17 @@ const role = document.querySelector('input[name="role"]:checked')?.value;
         showError("Email dan password wajib diisi");
         return;
     }
+    const adminEmails = [
+    "wawan.hendrawan1130@gmail.com"
+];
+
+if (
+    role === "admin" &&
+    !adminEmails.includes(email.toLowerCase())
+) {
+    showError("Akun ini tidak memiliki akses sebagai Admin.");
+    return;
+}
 
     try {
         const userCred = await signInWithEmailAndPassword(auth, email, pass);
