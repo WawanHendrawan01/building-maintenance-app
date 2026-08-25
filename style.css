@@ -1049,27 +1049,45 @@ body:has(.login-container) {
     position: absolute;
     top: 8px;
     right: 0;
-    min-width: 265px;
-    padding: 12px 18px;
-    border: 1px solid #d9d9ef;
+    min-width: 290px;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    grid-template-areas:
+        "icon date"
+        "icon time";
+    column-gap: 10px;
+    padding: 13px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 14px;
-    text-align: right;
-    background: white;
-    box-shadow: 0 8px 18px rgba(35, 38, 80, 0.10);
+    color: white;
+    background: linear-gradient(135deg, #4f46a5, #764ba2);
+    box-shadow: 0 10px 22px rgba(78, 70, 165, 0.25);
+}
+
+.live-datetime::before {
+    grid-area: icon;
+    align-self: center;
+    content: "🕒";
+    font-size: 1.6rem;
 }
 
 .live-date {
+    grid-area: date;
     display: block;
-    color: #666;
-    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.8rem;
+    text-align: left;
 }
 
 .live-time {
+    grid-area: time;
     display: block;
     margin-top: 3px;
-    color: #5d63d9;
-    font-size: 1.25rem;
-    letter-spacing: 0.05em;
+    color: white;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-align: left;
 }
 
 @media (max-width: 800px) {
