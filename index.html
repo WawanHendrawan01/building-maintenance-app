@@ -78,7 +78,7 @@
                     </a>
 
                     <ul class="submenu" id="building-utility-menu">
-                        <li><a href="#energy-cost" class="nav-item">⚡ Electricity Cost</a></li>
+                        <li><a href="#electricity-cost" class="nav-item">⚡ Electricity Cost</a></li>
                         <li><a href="#energy-cost" class="nav-item">💧 Water Cost</a></li>
                         <li><a href="#energy-cost" class="nav-item">🔥 Gas Cost</a></li>
                     </ul>
@@ -695,7 +695,66 @@
     <canvas id="energy-history-chart"></canvas>
 </div>
 </div>
-</section>
+</section> <!-- penutup Energy Cost MTD -->
+
+<!-- Section Electricity Daily -->
+<section id="electricity-cost" class="section">
+    <div class="daily-hero">
+        <div>
+            <span class="daily-eyebrow">⚡ DAILY BUILDING UTILITY</span>
+            <h2>Electricity Cost</h2>
+            <p>
+                Monitoring biaya listrik harian berdasarkan data terbaru
+                yang tersedia pada EMS Electricity.
+            </p>
+        </div>
+
+        <div class="daily-status">
+            <span class="daily-status-dot"></span>
+            <span id="electricity-daily-date">Loading data...</span>
+        </div>
+    </div>
+
+    <div class="daily-overview">
+        <div class="daily-info-card">
+            <div class="daily-icon">⚡</div>
+            <h3>PLN Gross Cost</h3>
+            <p id="electricity-daily-pln">--</p>
+        </div>
+
+        <div class="daily-info-card">
+            <div class="daily-icon">🏢</div>
+            <h3>Tenant Recharge</h3>
+            <p id="electricity-daily-tenant">--</p>
+        </div>
+
+        <div class="daily-info-card">
+            <div class="daily-icon">📊</div>
+            <h3>Actual Building Cost</h3>
+            <p id="electricity-daily-actual">--</p>
+        </div>
+    </div>
+
+    <div class="daily-launch-card">
+        <div>
+            <h3>🧾 Tenant Electricity Detail</h3>
+            <p>
+                🧺 Laundry:
+                <strong id="electricity-daily-laundry">--</strong>
+            </p>
+            <p>
+                📡 XL:
+                <strong id="electricity-daily-xl">--</strong>
+            </p>
+        </div>
+
+        <div class="daily-status">
+            <span class="daily-status-dot"></span>
+            Latest daily record
+        </div>
+    </div>
+</section><!-- penutup Electricity Daily -->
+
 
 <!-- EMS Section --> 
 <section id="ems" class="section"> 

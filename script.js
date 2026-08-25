@@ -2609,3 +2609,50 @@ function autoRefreshBeamData() {
 
     refreshEnergyCostDashboard();
 }
+
+async function loadDailyElectricityCost() {
+    const url =
+        "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec?mode=daily";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        if (!data.found) {
+            document.getElementById("electricity-daily-date").textContent =
+                "Daily data belum tersedia";
+            return;
+        }
+
+        document.getElementById("electricity-daily-date").textContent =
+            `Data Date: ${data.dataDate}`;
+
+        document.getElementById("electricity-daily-pln").textContent =
+            formatEnergyRupiah(data.pln);
+
+        document.getElementById("electricity-daily-tenant").textContent =
+            formatEnergyRupiah(data.totalTenant);
+
+        document.getElementById("electricity-daily-actual").textContent =
+            formatEnergyRupiah(data.actualBuilding);
+
+        document.getElementById("electricity-daily-laundry").textContent =
+            formatEnergyRupiah(data.laundry);
+
+        document.getElementById("electricity-daily-xl").textContent =
+            formatEnergyRupiah(data.xl);
+
+        console.log("⚡ Daily Electricity Loaded:", data);
+    } catch (error) {
+        console.error("❌ Daily Electricity Error:", error);
+    }
+}
