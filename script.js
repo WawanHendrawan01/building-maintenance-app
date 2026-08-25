@@ -30,6 +30,7 @@ function refreshEnergyCostDashboard() {
     loadWaterCostDashboard();
     loadGasCostDashboard();
     loadLaundryCostDashboard();
+    loadDailyChecklistDashboard();
 }
 loadEnergyCostDashboard();
 loadWaterCostDashboard();
@@ -2047,6 +2048,9 @@ async function loadWODashboard() {
     }
 }
 
+// ========================================
+// BEAM - Monthly Maintenance Dashboard
+// ========================================
 async function loadMaintenanceDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbwdG4i-6ZAnKgkPnoYS0CiKNE93GmLx09tejM2aZ2q2D-Lb05Zlt0PVKBTIqUMBtMXeYw/exec";
 
@@ -2074,6 +2078,9 @@ async function loadMaintenanceDashboard() {
     }
 }
 
+// ========================================
+// BEAM - Room History Card Dashboard
+// ========================================
 async function loadRoomHistoryDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbx4dZPoWBRW9jiOvr-mQTXBmvEnRZVbRvp2NZ7TECCN67g69tH3Yn2pMfP80JosNOgm/exec";
 
@@ -2098,6 +2105,44 @@ async function loadRoomHistoryDashboard() {
         console.log("🏨 Room History Dashboard Loaded:", data);
     } catch (error) {
         console.error("❌ Room History Dashboard Error:", error);
+    }
+}
+
+// ========================================
+// BEAM - Daily Checklist Card Dashboard
+// ========================================
+async function loadDailyChecklistDashboard() {
+    const url =
+        "https://script.google.com/macros/s/AKfycbwO0mEFGo_3feb5g9KErxyMzIpLz7r-lKeGgH2qyqm8AeIPW96NHedGHwJGFPHds5ng/exec";
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (data.error) {
+            throw new Error(data.error);
+        }
+
+        document.getElementById("daily-total-submission").textContent =
+            data.totalSubmissionToday ?? 0;
+
+        document.getElementById("daily-area-submitted").textContent =
+            data.areaSubmitted ?? 0;
+
+        document.getElementById("daily-normal").textContent =
+            data.normal ?? 0;
+
+        document.getElementById("daily-attention").textContent =
+            `${data.areaNotSubmitted ?? 0} Pending / ${data.abnormal ?? 0} Abnormal`;
+
+        console.log("📋 Daily Checklist Dashboard Loaded:", data);
+    } catch (error) {
+        console.error("❌ Daily Checklist Dashboard Error:", error);
     }
 }
 
