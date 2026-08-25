@@ -2615,8 +2615,9 @@ function autoRefreshBeamData() {
     refreshEnergyCostDashboard();
 
     loadDailyElectricityCost();
+    
 }
-
+// fungsi load Daily Electricity Cost
 async function loadDailyElectricityCost() {
     const url =
         "https://script.google.com/macros/s/AKfycbxF_vCY7qh-WxQFGBfaxRT67zj1iRuW1PFBKh5BeEnlgzfeHfHoOzU7fzHVLjVlg3U34A/exec?mode=daily";
@@ -2657,6 +2658,17 @@ async function loadDailyElectricityCost() {
 
         document.getElementById("electricity-daily-xl").textContent =
             formatEnergyRupiah(data.xl);
+        document.getElementById("dashboard-daily-electricity-date")?.textContent =
+        data.dataDate;
+
+        document.getElementById("dashboard-daily-electricity-pln")?.textContent =
+    formatEnergyRupiah(data.pln);
+
+        document.getElementById("dashboard-daily-electricity-tenant")?.textContent =
+    formatEnergyRupiah(data.totalTenant);
+
+        document.getElementById("dashboard-daily-electricity-actual")?.textContent =
+    formatEnergyRupiah(data.actualBuilding);    
 
         console.log("⚡ Daily Electricity Loaded:", data);
     } catch (error) {
