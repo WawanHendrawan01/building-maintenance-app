@@ -41,6 +41,8 @@ loadDailyChecklistDashboard();
 
 setInterval(autoRefreshBeamData, 5 * 60 * 1000);
 
+loadDailyElectricityCost();
+
 }, { once: true });
 
 // --- LOGIN CHECK ---
@@ -2570,6 +2572,7 @@ function exportEnergyCostPDF() {
         .save();
 }
 
+//fungsi live jam di dashboard
 function updateLiveDateTime() {
     const container = document.getElementById("live-datetime");
     if (!container) return;
@@ -2599,6 +2602,8 @@ function updateLiveDateTime() {
 updateLiveDateTime();
 setInterval(updateLiveDateTime, 1000);
 
+
+//fungsi auto refresh page//
 function autoRefreshBeamData() {
     console.log("🔄 Auto-refresh BEAM data...");
 
@@ -2608,6 +2613,8 @@ function autoRefreshBeamData() {
     loadDailyChecklistDashboard();
 
     refreshEnergyCostDashboard();
+
+    loadDailyElectricityCost();
 }
 
 async function loadDailyElectricityCost() {
