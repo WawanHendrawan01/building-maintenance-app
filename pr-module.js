@@ -199,17 +199,35 @@
         const reference = a.doc(a.db, 'purchase_requests', prNumber);
         const nowIso = new Date().toISOString();
         const record = { pr_id:prNumber, pr_number:prNumber, created_date:el('pr-date').value, requester:el('pr-requester').value.trim(), department:el('pr-department').value.trim() || 'Engineering', purpose:el('pr-purpose').value.trim(), priority:el('pr-priority').value, status:'Draft', document_location:'Engineering', hod_signed_date:null, purchasing_signed_date:null, am_signed_date:null, submitted_to_purchasing_date:null, received_date:null, remark:el('pr-remark').value.trim(), attachment:null, items, created_by:user()?.email || null, created_at:nowIso, updated_at:nowIso };
+        const attachmentFile = el('pr-attachment').files[0];
+        let attachmentWarning = '';
         try {
             const exists = await a.getDoc(reference);
             if (exists.exists()) throw new Error('PR Number already exists. Use a unique number.');
-            record.attachment = await uploadAttachment(prNumber, el('pr-attachment').files[0]);
+            if (attachmentFile) {
+                try {
+                    record.attachment = await uploadAttachment(prNumber, attachmentFile);
+                } catch (uploadError) {
+                    console.error('PR attachment upload failed:', uploadError);
+                    record.attachment = {
+                        name: attachmentFile.name,
+                        type: attachmentFile.type,
+                        size: attachmentFile.size,
+                        path: null,
+                        url: null,
+                        status: 'upload_failed'
+                    };
+                    attachmentWarning = ' Attachment failed to upload, but the PR was saved.';
+                }
+            }
             await a.transaction(a.db, async transaction => {
                 const fresh = await transaction.get(reference);
                 if (fresh.exists()) throw new Error('PR Number already exists. Use a unique number.');
                 transaction.set(reference, record);
             });
             await addHistory(prNumber, 'PR Created', record.remark);
-            switchView('list'); showMessage(`${prNumber} successfully created.`);
+            if (attachmentWarning) await addHistory(prNumber, 'Attachment upload failed', attachmentFile.name);
+            switchView('list'); showMessage(`${prNumber} successfully created.${attachmentWarning}`, Boolean(attachmentWarning));
         } catch (error) { console.error(error); showMessage(error.message || 'Unable to save PR.', true); }
     }
 
@@ -236,7 +254,7 @@
             <div class="pr-panel"><h3>Items</h3><div class="pr-table-wrap"><table class="pr-table"><thead><tr><th>Item</th><th>Specification</th><th>Requested</th><th>Received</th><th>Remark</th></tr></thead><tbody>${(pr.items || []).map((item,i) => `<tr><td>${esc(item.item_name)}</td><td>${esc(item.specification || '—')}</td><td>${item.qty} ${esc(item.unit)}</td><td><input data-received="${i}" type="number" min="0" max="${item.qty}" step="0.01" value="${Number(item.received_qty || 0)}" style="width:80px"><span class="pr-print-value">${Number(item.received_qty || 0)} ${esc(item.unit)}</span></td><td><input data-item-remark="${i}" value="${esc(item.item_remark || '')}"><span class="pr-print-value">${esc(item.item_remark || '—')}</span></td></tr>`).join('')}</tbody></table></div><button id="pr-save-receipts" class="btn btn-primary pr-no-print">Save Received Qty</button></div></div>
             <div><div class="pr-panel pr-no-print"><h3>Manual Tracking Update</h3><div class="form-group"><label>Status</label><select id="pr-update-status">${optionList(STATUSES, pr.status)}</select></div><div class="form-group"><label>Document Location</label><select id="pr-update-location">${optionList(LOCATIONS, pr.document_location)}</select></div><div class="form-group"><label>Update Remark</label><textarea id="pr-update-remark" rows="2"></textarea></div><button id="pr-update-btn" class="btn btn-primary">Update Tracking</button></div>
             <div class="pr-panel pr-optional-print"><h3>Approval Milestones</h3><div class="pr-kv"><div><small>HOD Signed</small>${formatDate(pr.hod_signed_date)}</div><div><small>Purchasing Signed</small>${formatDate(pr.purchasing_signed_date)}</div><div><small>AM Signed</small>${formatDate(pr.am_signed_date)}</div><div><small>Submitted</small>${formatDate(pr.submitted_to_purchasing_date)}</div><div><small>Received</small>${formatDate(pr.received_date)}</div></div></div>
-            <div class="pr-panel pr-optional-print"><h3>Attachment</h3>${pr.attachment?.url ? `<a href="${esc(pr.attachment.url)}" target="_blank" rel="noopener">${esc(pr.attachment.name)}</a>` : '<span class="pr-muted">No attachment</span>'}</div>
+            <div class="pr-panel pr-optional-print"><h3>Attachment</h3>${pr.attachment?.url ? `<a href="${esc(pr.attachment.url)}" target="_blank" rel="noopener">${esc(pr.attachment.name)}</a>` : pr.attachment?.status === 'upload_failed' ? `<span class="pr-message error">Upload failed: ${esc(pr.attachment.name)}</span>` : '<span class="pr-muted">No attachment</span>'}</div>
             <div class="pr-panel pr-optional-print"><h3>Tracking History</h3><ul class="pr-history">${history.length ? history.map(h => `<li><strong>${esc(h.action)}</strong><br><span class="pr-muted">${formatDateTime(h.timestamp)} · ${esc(h.updated_by || 'Unknown')}</span>${h.remark ? `<br>${esc(h.remark)}` : ''}</li>`).join('') : '<li>No history yet.</li>'}</ul></div></div>
         </div>`;
         el('pr-detail-back').addEventListener('click', () => switchView('list'));
