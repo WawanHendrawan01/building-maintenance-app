@@ -33,5 +33,35 @@
 .pr-message { padding:12px; border-radius:7px; margin-bottom:15px; background:#eef7ee; color:#256029; }
 .pr-message.error { background:#fff0f0; color:#a61b1b; }
 .pr-hidden { display:none !important; }
+.pr-print-value { display:none; }
 @media (max-width:900px) { .pr-grid{grid-template-columns:repeat(2,1fr)} .pr-detail-grid{grid-template-columns:1fr} .pr-item-row{grid-template-columns:1fr 1fr} }
 @media (max-width:560px) { .pr-grid{grid-template-columns:1fr} .pr-page-header{align-items:flex-start;flex-direction:column} .pr-kv,.pr-item-row{grid-template-columns:1fr} }
+
+@media print {
+    @page { size: A4 portrait; margin: 12mm; }
+    body.pr-printing { background:#fff; }
+    body.pr-printing .sidebar-nav,
+    body.pr-printing .header,
+    body.pr-printing .site-footer,
+    body.pr-printing #pr-list-view,
+    body.pr-printing #pr-form-view,
+    body.pr-printing #pr-message,
+    body.pr-printing .pr-no-print { display:none !important; }
+    body.pr-printing .main-wrapper,
+    body.pr-printing .main-content { margin:0 !important; padding:0 !important; width:100% !important; }
+    body.pr-printing .section { display:none !important; }
+    body.pr-printing #purchase-request,
+    body.pr-printing #pr-detail-view { display:block !important; }
+    body.pr-printing .pr-page-header,
+    body.pr-printing .pr-panel { box-shadow:none; border:1px solid #cfd4dc; break-inside:avoid; margin-bottom:10px; padding:12px; }
+    body.pr-printing .pr-page-header { display:block; }
+    body.pr-printing .pr-detail-grid { display:block; }
+    body.pr-printing .pr-kv { grid-template-columns:repeat(2,1fr); }
+    body.pr-printing .pr-table-wrap { overflow:visible; }
+    body.pr-printing .pr-table { min-width:0; font-size:10pt; }
+    body.pr-printing .pr-table th,
+    body.pr-printing .pr-table td { padding:6px; border:1px solid #cfd4dc; }
+    body.pr-printing .pr-table input { display:none !important; }
+    body.pr-printing .pr-print-value { display:inline; }
+    body.pr-printing a { color:#000; text-decoration:none; }
+}

@@ -210,7 +210,7 @@
         switchView('detail');
         const pr = state.active;
         const history = await loadHistory(prNumber);
-        el('pr-detail-view').innerHTML = `<div class="pr-page-header"><div><h1>${esc(pr.pr_number)}</h1><p>Purchase Request Detail</p></div><button id="pr-detail-back" class="pr-secondary">Back</button></div>
+        el('pr-detail-view').innerHTML = `<div class="pr-page-header"><div><h1>${esc(pr.pr_number)}</h1><p>Purchase Request Detail</p></div><div class="pr-actions pr-no-print"><button id="pr-print-btn" class="btn btn-primary">Print PR</button><button id="pr-detail-back" class="pr-secondary">Back</button></div></div>
         <div class="pr-detail-grid">
             <div><div class="pr-panel"><h3>PR Header</h3><div class="pr-kv">
                 <div><small>Request Date</small>${formatDate(pr.created_date)}</div><div><small>Requester</small>${esc(pr.requester)}</div>
@@ -219,15 +219,30 @@
                 <div><small>Document Aging</small>${daysBetween(pr.created_date, pr.submitted_to_purchasing_date || null)} hari</div><div><small>Waiting Item Aging</small>${pr.submitted_to_purchasing_date ? daysBetween(pr.submitted_to_purchasing_date, pr.received_date) + ' hari' : '—'}</div>
                 <div class="pr-wide"><small>Purpose</small>${esc(pr.purpose)}</div><div class="pr-wide"><small>Remark</small>${esc(pr.remark || '—')}</div>
             </div></div>
-            <div class="pr-panel"><h3>Items</h3><div class="pr-table-wrap"><table class="pr-table"><thead><tr><th>Item</th><th>Specification</th><th>Requested</th><th>Received</th><th>Remark</th></tr></thead><tbody>${(pr.items || []).map((item,i) => `<tr><td>${esc(item.item_name)}</td><td>${esc(item.specification || '—')}</td><td>${item.qty} ${esc(item.unit)}</td><td><input data-received="${i}" type="number" min="0" max="${item.qty}" step="0.01" value="${Number(item.received_qty || 0)}" style="width:80px"></td><td><input data-item-remark="${i}" value="${esc(item.item_remark || '')}"></td></tr>`).join('')}</tbody></table></div><button id="pr-save-receipts" class="btn btn-primary">Save Received Qty</button></div></div>
-            <div><div class="pr-panel"><h3>Manual Tracking Update</h3><div class="form-group"><label>Status</label><select id="pr-update-status">${optionList(STATUSES, pr.status)}</select></div><div class="form-group"><label>Document Location</label><select id="pr-update-location">${optionList(LOCATIONS, pr.document_location)}</select></div><div class="form-group"><label>Update Remark</label><textarea id="pr-update-remark" rows="2"></textarea></div><button id="pr-update-btn" class="btn btn-primary">Update Tracking</button></div>
+            <div class="pr-panel"><h3>Items</h3><div class="pr-table-wrap"><table class="pr-table"><thead><tr><th>Item</th><th>Specification</th><th>Requested</th><th>Received</th><th>Remark</th></tr></thead><tbody>${(pr.items || []).map((item,i) => `<tr><td>${esc(item.item_name)}</td><td>${esc(item.specification || '—')}</td><td>${item.qty} ${esc(item.unit)}</td><td><input data-received="${i}" type="number" min="0" max="${item.qty}" step="0.01" value="${Number(item.received_qty || 0)}" style="width:80px"><span class="pr-print-value">${Number(item.received_qty || 0)} ${esc(item.unit)}</span></td><td><input data-item-remark="${i}" value="${esc(item.item_remark || '')}"><span class="pr-print-value">${esc(item.item_remark || '—')}</span></td></tr>`).join('')}</tbody></table></div><button id="pr-save-receipts" class="btn btn-primary pr-no-print">Save Received Qty</button></div></div>
+            <div><div class="pr-panel pr-no-print"><h3>Manual Tracking Update</h3><div class="form-group"><label>Status</label><select id="pr-update-status">${optionList(STATUSES, pr.status)}</select></div><div class="form-group"><label>Document Location</label><select id="pr-update-location">${optionList(LOCATIONS, pr.document_location)}</select></div><div class="form-group"><label>Update Remark</label><textarea id="pr-update-remark" rows="2"></textarea></div><button id="pr-update-btn" class="btn btn-primary">Update Tracking</button></div>
             <div class="pr-panel"><h3>Approval Milestones</h3><div class="pr-kv"><div><small>HOD Signed</small>${formatDate(pr.hod_signed_date)}</div><div><small>Purchasing Signed</small>${formatDate(pr.purchasing_signed_date)}</div><div><small>AM Signed</small>${formatDate(pr.am_signed_date)}</div><div><small>Submitted</small>${formatDate(pr.submitted_to_purchasing_date)}</div><div><small>Received</small>${formatDate(pr.received_date)}</div></div></div>
             <div class="pr-panel"><h3>Attachment</h3>${pr.attachment?.url ? `<a href="${esc(pr.attachment.url)}" target="_blank" rel="noopener">${esc(pr.attachment.name)}</a>` : '<span class="pr-muted">No attachment</span>'}</div>
             <div class="pr-panel"><h3>Tracking History</h3><ul class="pr-history">${history.length ? history.map(h => `<li><strong>${esc(h.action)}</strong><br><span class="pr-muted">${formatDateTime(h.timestamp)} · ${esc(h.updated_by || 'Unknown')}</span>${h.remark ? `<br>${esc(h.remark)}` : ''}</li>`).join('') : '<li>No history yet.</li>'}</ul></div></div>
         </div>`;
         el('pr-detail-back').addEventListener('click', () => switchView('list'));
+        el('pr-print-btn').addEventListener('click', () => printPR(pr.pr_number));
         el('pr-update-btn').addEventListener('click', updateTracking);
         el('pr-save-receipts').addEventListener('click', updateReceipts);
+    }
+
+    function printPR(prNumber) {
+        const previousTitle = document.title;
+        document.title = `${prNumber} - Purchase Request`;
+        document.body.classList.add('pr-printing');
+        const cleanup = () => {
+            document.body.classList.remove('pr-printing');
+            document.title = previousTitle;
+            window.removeEventListener('afterprint', cleanup);
+        };
+        window.addEventListener('afterprint', cleanup);
+        window.print();
+        window.setTimeout(cleanup, 1000);
     }
 
     async function loadHistory(prNumber) {
