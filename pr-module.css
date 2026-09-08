@@ -34,6 +34,8 @@
 .pr-message.error { background:#fff0f0; color:#a61b1b; }
 .pr-hidden { display:none !important; }
 .pr-print-value { display:none; }
+.pr-print-option { display:flex; flex-direction:column; gap:4px; color:#667085; font-size:.78rem; }
+.pr-print-option select { min-width:165px; padding:9px 10px; border:1px solid #667eea; border-radius:6px; background:#fff; color:#263238; }
 @media (max-width:900px) { .pr-grid{grid-template-columns:repeat(2,1fr)} .pr-detail-grid{grid-template-columns:1fr} .pr-item-row{grid-template-columns:1fr 1fr} }
 @media (max-width:560px) { .pr-grid{grid-template-columns:1fr} .pr-page-header{align-items:flex-start;flex-direction:column} .pr-kv,.pr-item-row{grid-template-columns:1fr} }
 
@@ -47,6 +49,7 @@
     body.pr-printing #pr-form-view,
     body.pr-printing #pr-message,
     body.pr-printing .pr-no-print { display:none !important; }
+    body.pr-printing.pr-print-basic .pr-optional-print { display:none !important; }
     body.pr-printing .main-wrapper,
     body.pr-printing .main-content { margin:0 !important; padding:0 !important; width:100% !important; }
     body.pr-printing .section { display:none !important; }
