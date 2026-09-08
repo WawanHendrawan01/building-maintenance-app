@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engineering Department - Reporting System</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pr-module.css">
     <!-- PDF Export Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
@@ -20,6 +21,12 @@
         <li>
             <a href="#home" class="nav-item active">
                 🏠 Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="#purchase-request" class="nav-item">
+                🛒 Purchase Request
             </a>
         </li>
 
@@ -2212,6 +2219,10 @@
                     </div>
                 </section>
 
+                <section id="purchase-request" class="section">
+                    <div id="pr-app" aria-live="polite"></div>
+                </section>
+
             </main>
 
             <!-- Footer -->
@@ -2248,6 +2259,7 @@
 
 <!-- MAIN SCRIPT (TIDAK BOLEH MODULE) -->
 <script src="script.js"></script>
+<script src="pr-module.js"></script>
 
 </body>
 </html>
