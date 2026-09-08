@@ -135,24 +135,29 @@
                 <div class="form-group pr-wide"><label>Remark</label><textarea id="pr-remark" rows="2"></textarea></div>
             </div>
             <h3>Items</h3><div id="pr-items">${itemRow(0)}</div>
-            <div class="pr-actions"><button type="button" id="pr-add-item" class="pr-secondary">+ Add Item</button><button class="btn btn-primary">Save PR</button></div>
+            <div class="pr-actions"><button type="button" id="pr-add-item" class="pr-secondary">+ Add Item</button><button type="submit" id="pr-save-btn" class="btn btn-primary">Save PR</button></div>
         </form>`;
         el('pr-form-back').addEventListener('click', () => switchView('list'));
-        el('pr-add-item').addEventListener('click', () => { el('pr-items').insertAdjacentHTML('beforeend', itemRow(Date.now())); bindRemoveItems(); });
+        el('pr-add-item').addEventListener('click', () => el('pr-items').insertAdjacentHTML('beforeend', itemRow(Date.now())));
+        el('pr-items').addEventListener('click', handleItemAction);
         el('pr-form').addEventListener('submit', savePR);
-        bindRemoveItems();
     }
 
-    function bindRemoveItems() {
-        document.querySelectorAll('[data-remove-item]').forEach(btn => btn.onclick = () => {
-            if (document.querySelectorAll('[data-item-row]').length === 1) return showMessage('A PR must contain at least one item.', true);
-            btn.closest('[data-item-row]').remove();
-        });
+    function handleItemAction(event) {
+        const removeButton = event.target.closest('[data-remove-item]');
+        if (!removeButton || !event.currentTarget.contains(removeButton)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const itemRows = event.currentTarget.querySelectorAll(':scope > [data-item-row]');
+        if (itemRows.length <= 1) return showMessage('A PR must contain at least one item.', true);
+        removeButton.closest('[data-item-row]')?.remove();
     }
 
-    function collectItems() {
-        return [...document.querySelectorAll('[data-item-row]')].map((row, index) => {
-            const get = name => row.querySelector(`[data-field="${name}"]`).value.trim();
+    function collectItems(form) {
+        const itemContainer = form.querySelector('#pr-items');
+        if (!itemContainer) return [];
+        return [...itemContainer.querySelectorAll(':scope > [data-item-row]')].map((row, index) => {
+            const get = name => row.querySelector(`[data-field="${name}"]`)?.value.trim() || '';
             return { id:`item-${Date.now()}-${index}`, item_name:get('item_name'), specification:get('specification'), qty:Number(get('qty')), unit:get('unit'), estimated_price:get('estimated_price') === '' ? null : Number(get('estimated_price')), received_qty:0, item_remark:'' };
         });
     }
@@ -169,9 +174,12 @@
 
     async function savePR(event) {
         event.preventDefault();
+        event.stopPropagation();
+        const form = event.currentTarget;
         const prNumber = el('pr-number').value.trim().toUpperCase();
         if (!/^PR-\d{4}-\d{4,}$/.test(prNumber)) return showMessage('PR Number must use format PR-YYYY-XXXX.', true);
-        const items = collectItems();
+        const items = collectItems(form);
+        if (!items.length) return showMessage('A PR must contain at least one item.', true);
         if (items.some(item => !item.item_name || !item.unit || !(item.qty > 0))) return showMessage('Complete all required item fields.', true);
         const a = api();
         const reference = a.doc(a.db, 'purchase_requests', prNumber);
