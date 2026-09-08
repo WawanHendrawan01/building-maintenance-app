@@ -91,10 +91,24 @@
         const date = el('pr-filter-date')?.value || '';
         const priority = el('pr-filter-priority')?.value || '';
         const filtered = state.records.filter(pr => (!search || pr.pr_number.toLowerCase().includes(search)) && (!status || pr.status === status) && (!date || pr.created_date === date) && (!priority || pr.priority === priority));
-        el('pr-total-open').textContent = state.records.filter(pr => !CLOSED.has(pr.status)).length;
-        el('pr-total-approval').textContent = state.records.filter(pr => WAITING_APPROVAL.has(pr.status)).length;
-        el('pr-total-waiting').textContent = state.records.filter(pr => ['Waiting Item','Partially Received'].includes(pr.status)).length;
-        el('pr-total-received').textContent = state.records.filter(pr => ['Received','Closed'].includes(pr.status)).length;
+        const openCount = state.records.filter(pr => !CLOSED.has(pr.status)).length;
+        const approvalCount = state.records.filter(pr => WAITING_APPROVAL.has(pr.status)).length;
+        const waitingCount = state.records.filter(pr => ['Waiting Item','Partially Received'].includes(pr.status)).length;
+        const receivedCount = state.records.filter(pr => ['Received','Closed'].includes(pr.status)).length;
+        el('pr-total-open').textContent = openCount;
+        el('pr-total-approval').textContent = approvalCount;
+        el('pr-total-waiting').textContent = waitingCount;
+        el('pr-total-received').textContent = receivedCount;
+        const dashboardValues = {
+            'dashboard-pr-total': state.records.length,
+            'dashboard-pr-approval': approvalCount,
+            'dashboard-pr-waiting': waitingCount,
+            'dashboard-pr-received': receivedCount
+        };
+        Object.entries(dashboardValues).forEach(([id, value]) => {
+            const target = el(id);
+            if (target) target.textContent = value;
+        });
         el('pr-list-body').innerHTML = filtered.length ? filtered.map(pr => `<tr>
             <td><strong>${esc(pr.pr_number)}</strong><br><span class="pr-badge ${pr.priority === 'Urgent' ? 'urgent' : ''}">${esc(pr.priority)}</span></td>
             <td>${formatDate(pr.created_date)}</td><td>${esc(pr.purpose)}</td><td><span class="pr-badge">${esc(pr.status)}</span></td>
