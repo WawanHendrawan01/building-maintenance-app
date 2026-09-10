@@ -2355,6 +2355,43 @@ const energyCostRevenueRatio = hotelNetRevenue > 0
     `${energyCostRevenueRatio.toFixed(2)}%`;
 }
 
+async function fetchEnergyHistoryJson(endpoint, month, sourceName) {
+    let lastError;
+
+    for (let attempt = 1; attempt <= 2; attempt++) {
+        try {
+            const separator = endpoint.includes("?") ? "&" : "?";
+            const url = `${endpoint}${separator}month=${encodeURIComponent(month)}&_=${Date.now()}-${attempt}`;
+            const response = await fetch(url, {
+                cache: "no-store",
+                redirect: "follow"
+            });
+
+            if (!response.ok) {
+                throw new Error(`${sourceName} HTTP ${response.status}`);
+            }
+
+            const contentType = response.headers.get("content-type") || "";
+            const responseText = await response.text();
+
+            if (!contentType.includes("json")) {
+                throw new Error(`${sourceName} returned ${contentType || "non-JSON response"}`);
+            }
+
+            const data = JSON.parse(responseText);
+            if (data?.error) throw new Error(`${sourceName}: ${data.error}`);
+            return data;
+        } catch (error) {
+            lastError = error;
+            if (attempt < 2) {
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+        }
+    }
+
+    throw lastError;
+}
+
 async function loadEnergyCostHistory() {
     const allMonths = [
     "Januari", "Februari", "Maret", "April",
@@ -2382,13 +2419,11 @@ const months = allMonths.slice(0, currentMonthIndex + 1);
 
     for (const month of months) {
         try {
-            const query = `?month=${encodeURIComponent(month)}`;
-
             const [electricity, water, gas, laundry] = await Promise.all([
-                fetch(endpoints.electricity + query).then(response => response.json()),
-                fetch(endpoints.water + query).then(response => response.json()),
-                fetch(endpoints.gas + query).then(response => response.json()),
-                fetch(endpoints.laundry + query).then(response => response.json())
+                fetchEnergyHistoryJson(endpoints.electricity, month, "Electricity"),
+                fetchEnergyHistoryJson(endpoints.water, month, "Water"),
+                fetchEnergyHistoryJson(endpoints.gas, month, "Gas"),
+                fetchEnergyHistoryJson(endpoints.laundry, month, "Laundry")
             ]);
 
             const grossUtility =
@@ -2434,16 +2469,7 @@ rows.push({
             </tr>
         `;
     
-        return {
-    month,
-    grossUtility,
-    tenantRecharge,
-    actualBuildingCost,
-    hotelNetRevenue,
-    energyCostRevenueRatio,
-    hotelNetRevenue: historyHotelNetRevenue,
-energyCostRevenueRatio: historyEnergyCostRevenueRatio
-};
+        return;
     }
 
     tbody.innerHTML = rows.map(row => `
