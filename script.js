@@ -112,7 +112,17 @@ const sidebarToggle = document.getElementById("sidebarToggle");
 const layout = document.querySelector(".layout");
 
 sidebarToggle.addEventListener("click", () => {
-    layout.classList.toggle("sidebar-collapsed");
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        layout.classList.toggle("mobile-sidebar-open");
+    } else {
+        layout.classList.toggle("sidebar-collapsed");
+    }
+});
+
+window.addEventListener("resize", () => {
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+        layout.classList.remove("mobile-sidebar-open");
+    }
 });
 
 // Handle logout
@@ -186,6 +196,9 @@ navItems.forEach(item => {
                 });
 
                 target.classList.add("active");
+                if (window.matchMedia("(max-width: 768px)").matches) {
+                    layout.classList.remove("mobile-sidebar-open");
+                }
             }
         }
     });

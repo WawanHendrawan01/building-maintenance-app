@@ -1,11 +1,11 @@
-const CACHE_NAME = 'reazt-shell-v1';
+const CACHE_NAME = 'reazt-shell-v2';
 const APP_SHELL = [
     './',
     './index.html',
     './login.html',
-    './style.css',
+    './style.css?v=20260910-mobile1',
     './pr-module.css',
-    './script.js',
+    './script.js?v=20260910-mobile1',
     './pr-module.js',
     './firebase-init.js',
     './login-auth.js',
