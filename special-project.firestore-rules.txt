@@ -1,0 +1,46 @@
+// Merge inside existing match /databases/{database}/documents; do not replace rules.
+// Check broad wildcard grants: Firestore allows are additive.
+match /special_projects/{projectNumber} {
+  function validProject() {
+    let p = request.resource.data;
+    return p.project_number == projectNumber && p.project_id == projectNumber
+      && p.progress_percentage is number && p.progress_percentage >= 0 && p.progress_percentage <= 100
+      && p.budget is number && p.budget >= 0 && p.actual_cost is number && p.actual_cost >= 0
+      && p.status in ['Planning','Waiting Approval','Waiting Budget','Waiting Material','Waiting Vendor','Ready to Start','In Progress','On Hold','Testing / Commissioning','Completed','Cancelled']
+      && (p.status != 'Completed' || (p.progress_percentage == 100 && p.actual_completion_date.size() > 0 && p.final_result.size() > 0))
+      && p.updated_by == request.auth.uid && p.updated_at == request.time;
+  }
+  allow read: if request.auth != null;
+  allow create: if request.auth != null && validProject()
+    && request.resource.data.created_by == request.auth.uid
+    && request.resource.data.created_at == request.time
+    && request.resource.data.status == 'Planning'
+    && request.resource.data.progress_percentage == 0 && request.resource.data.revision == 1;
+  allow update: if request.auth != null && validProject()
+    && request.resource.data.created_by == resource.data.created_by
+    && request.resource.data.created_at == resource.data.created_at
+    && request.resource.data.project_number == resource.data.project_number
+    && request.resource.data.project_id == resource.data.project_id
+    && request.resource.data.revision == resource.data.revision + 1;
+  allow delete: if false;
+  match /{historyCollection}/{historyId} {
+    allow read: if request.auth != null && historyCollection in ['progress_history','status_history','general_history'];
+    allow create: if request.auth != null
+      && historyCollection in ['progress_history','status_history','general_history']
+      && request.resource.data.updated_by == request.auth.uid
+      && request.resource.data.timestamp == request.time
+      && getAfter(/databases/$(database)/documents/special_projects/$(projectNumber)).data.project_number == projectNumber;
+    allow update, delete: if false;
+  }
+}
+match /special_project_counters/{year} {
+  allow read: if request.auth != null;
+  allow create: if request.auth != null
+    && request.resource.data.keys().hasOnly(['last_number']) && request.resource.data.last_number == 1;
+  allow update: if request.auth != null
+    && request.resource.data.keys().hasOnly(['last_number'])
+    && request.resource.data.last_number is int
+    && request.resource.data.last_number == resource.data.last_number + 1;
+  allow delete: if false;
+}
+
