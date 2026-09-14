@@ -2074,7 +2074,13 @@ async function loadMaintenanceDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbwdG4i-6ZAnKgkPnoYS0CiKNE93GmLx09tejM2aZ2q2D-Lb05Zlt0PVKBTIqUMBtMXeYw/exec";
 
     try {
-        const response = await fetch(url);
+        // Avoid reusing a cached Apps Script redirect with an expired content URL.
+        let response = await fetch(url, { cache: 'no-store' });
+        if (response.status === 404) {
+            const retryUrl = new URL(url);
+            retryUrl.searchParams.set('_reazt_retry', String(Date.now()));
+            response = await fetch(retryUrl.toString(), { cache: 'no-store' });
+        }
 
         if (!response.ok) {
             throw new Error("Gagal membaca data Monthly Maintenance");
@@ -2104,7 +2110,13 @@ async function loadRoomHistoryDashboard() {
     const url = "https://script.google.com/macros/s/AKfycbx4dZPoWBRW9jiOvr-mQTXBmvEnRZVbRvp2NZ7TECCN67g69tH3Yn2pMfP80JosNOgm/exec";
 
     try {
-        const response = await fetch(url);
+        // Avoid reusing a cached Apps Script redirect with an expired content URL.
+        let response = await fetch(url, { cache: 'no-store' });
+        if (response.status === 404) {
+            const retryUrl = new URL(url);
+            retryUrl.searchParams.set('_reazt_retry', String(Date.now()));
+            response = await fetch(retryUrl.toString(), { cache: 'no-store' });
+        }
 
         if (!response.ok) {
             throw new Error("Gagal membaca data Room History");
