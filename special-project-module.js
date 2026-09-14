@@ -39,7 +39,22 @@
     }
     const progress = p => `<progress max="100" value="${Number(p.progress_percentage)||0}" aria-label="Project progress"></progress> ${Number(p.progress_percentage)||0}%`;
     const badge = p => `<span class="sp-badge">${esc(p.status)}</span>${overdue(p)?` <span class="sp-badge sp-late">OVERDUE — ${-remaining(p)} Days</span>`:''}`;
+    function renderDashboard() {
+        const records = state.records;
+        const values = {
+            total: records.length,
+            active: records.filter(p => !closed(p)).length,
+            progress: records.filter(p => p.status === 'In Progress').length,
+            overdue: records.filter(overdue).length,
+            completed: records.filter(p => p.status === 'Completed').length
+        };
+        Object.entries(values).forEach(([key, value]) => {
+            const target = el('dashboard-sp-' + key);
+            if (target) target.textContent = state.ready ? value : '—';
+        });
+    }
     function renderList() {
+        renderDashboard();
         const f=Object.fromEntries(filterKeys.map(k=>[k,el('spf-'+k).value.trim()])); f.overdue=el('spf-overdue').checked; f.completed=el('spf-completed').checked;
         const r=state.records;
         const cards=[['Total Projects',r.length],['Active Projects',r.filter(p=>!closed(p)).length],...['Planning','Waiting Material','In Progress','On Hold'].map(s=>[s,r.filter(p=>p.status===s).length]),['Overdue',r.filter(overdue).length],['Completed',r.filter(p=>p.status==='Completed').length],['Total Budget',money(r.reduce((s,p)=>s+Number(p.budget||0),0))],['Actual Cost',money(r.reduce((s,p)=>s+Number(p.actual_cost||0),0))]];
@@ -117,7 +132,7 @@
         state.unsubscribe?.(); state.unsubscribe=null; state.ready=false; state.records=[]; state.generation++; view('list'); renderList(); el('sp-create').disabled=true;
         if(!window.firebaseAuth?.currentUser) return message('Silakan login untuk mengakses Special Project.',true);
         message('Loading projects…');
-        state.unsubscribe=window.firestoreOnSnapshot(window.firestoreCollection(window.firebaseDB,'special_projects'),s=>{state.records=s.docs.map(d=>d.data()).sort((a,b)=>b.project_number.localeCompare(a.project_number));state.ready=true;el('sp-create').disabled=false;renderList();message('');},error=>message(`Firestore: ${error.message}. Periksa rules Special Project.`,true));
+        state.unsubscribe=window.firestoreOnSnapshot(window.firestoreCollection(window.firebaseDB,'special_projects'),s=>{state.records=s.docs.map(d=>d.data()).sort((a,b)=>b.project_number.localeCompare(a.project_number));state.ready=true;el('sp-create').disabled=false;renderList();message('');},error=>{state.ready=false; renderDashboard(); message(`Firestore: ${error.message}. Periksa rules Special Project.`,true);});
     }
     function init() {
         if(!el('sp-app'))return;
@@ -125,7 +140,7 @@
         el('sp-create').onclick=()=>showForm(); el('sp-filters').oninput=renderList; el('sp-filters').onsubmit=e=>e.preventDefault(); el('sp-filters').onreset=()=>setTimeout(renderList,0);
         el('sp-app').addEventListener('click',e=>{const b=e.target.closest('button'); if(b?.hasAttribute('data-back'))view('list');if(b?.dataset.view)showDetail(b.dataset.view);});
         window.addEventListener('firebaseReady',connect); if(window.firebaseAuth?.currentUser)connect();else {renderList();message('Menunggu autentikasi Firebase…');}
-        setInterval(()=>{if(!el('sp-list').hidden)renderList();},60000);
+        setInterval(()=>{renderDashboard(); if(!el('sp-list').hidden)renderList();},60000);
     }
     init();
 })();
