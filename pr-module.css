@@ -68,3 +68,18 @@
     body.pr-printing .pr-print-value { display:inline; }
     body.pr-printing a { color:#000; text-decoration:none; }
 }
+
+/* Manual approval signatures: print layout only. */
+.pr-signature-block { display:none; }
+@media print {
+    body.pr-printing .pr-items-panel { break-inside:auto; page-break-inside:auto; }
+    body.pr-printing .pr-table thead { display:table-header-group; }
+    body.pr-printing .pr-table tr { break-inside:avoid; page-break-inside:avoid; }
+    body.pr-printing .pr-signature-block { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:8mm; border:1px solid #cfd4dc; break-inside:avoid; page-break-inside:avoid; }
+    body.pr-printing .pr-signature-column { padding:4mm 2mm; text-align:center; min-width:0; font-size:9pt; }
+    body.pr-printing .pr-signature-column + .pr-signature-column { border-left:1px solid #cfd4dc; }
+    body.pr-printing .pr-signature-column strong { display:block; min-height:8mm; }
+    body.pr-printing .pr-signature-space { height:24mm; }
+    body.pr-printing .pr-signature-name { min-height:10mm; overflow-wrap:anywhere; }
+    body.pr-printing .pr-signature-date { margin-top:2mm; white-space:nowrap; }
+}
