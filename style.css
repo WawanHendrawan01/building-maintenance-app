@@ -362,6 +362,47 @@ min-height: 0;
     font-weight: 600;
 }
 
+.maintenance-dashboard-card .maintenance-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 18px;
+    text-align: left;
+}
+.maintenance-dashboard-card .maintenance-kpi {
+    min-width: 0;
+    padding: 10px 11px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.11);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.maintenance-dashboard-card .maintenance-kpi span {
+    display: block;
+    font-size: .74rem;
+    line-height: 1.25;
+}
+.maintenance-dashboard-card .maintenance-kpi strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 1.25rem;
+    line-height: 1.1;
+    color: #fff;
+}
+.maintenance-dashboard-card .maintenance-kpi-due,
+.maintenance-dashboard-card .maintenance-kpi-overdue,
+.maintenance-dashboard-card .maintenance-kpi-compliance {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.38);
+}
+.maintenance-dashboard-card .maintenance-kpi-overdue {box-shadow: inset 3px 0 #ffbdad;}
+.maintenance-dashboard-card .maintenance-kpi-due {box-shadow: inset 3px 0 #ffe0a1;}
+.maintenance-dashboard-card .maintenance-kpi-compliance {box-shadow: inset 3px 0 #b8f0d0;}
+@media (max-width: 360px) {
+    .maintenance-dashboard-card .maintenance-kpi-grid {gap: 6px;}
+    .maintenance-dashboard-card .maintenance-kpi {padding: 9px 8px;}
+    .maintenance-dashboard-card .maintenance-kpi strong {font-size: 1.12rem;}
+}
+
 .card .portal-button:hover {
     color: #fff;
     background: rgba(255, 255, 255, 0.12);

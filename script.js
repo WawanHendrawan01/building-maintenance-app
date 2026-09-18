@@ -2088,14 +2088,20 @@ async function loadMaintenanceDashboard() {
 
         const data = await response.json();
 
-        document.getElementById("maintenance-due-count").textContent =
-            data.due ?? 0;
-
-        document.getElementById("maintenance-ongoing-count").textContent =
-            data.onSchedule ?? 0;
-
-        document.getElementById("maintenance-complete-count").textContent =
-            data.completed ?? 0;
+        const setKpi = (id, value) => {
+            document.getElementById(id).textContent = value ?? '--';
+        };
+        setKpi('maintenance-total-count', data.totalAsset);
+        setKpi('maintenance-ongoing-count', data.onSchedule);
+        setKpi('maintenance-due-count', data.due);
+        setKpi('maintenance-overdue-count', data.overdue);
+        setKpi('maintenance-complete-count', data.completed);
+        setKpi('maintenance-compliance-count',
+            data.compliance != null && Number.isFinite(Number(data.compliance))
+                ? new Intl.NumberFormat('en-US', { style: 'percent', maximumFractionDigits: 1 }).format(Number(data.compliance))
+                : '--');
+        // The current EMS summary response has no due-within-7-days field.
+        setKpi('maintenance-due-soon-count', data.dueWithin7Days);
 
         console.log("⚙️ Monthly Maintenance Dashboard Loaded:", data);
     } catch (error) {

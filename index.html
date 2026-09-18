@@ -222,39 +222,21 @@
 </div>
 
     <!-- MONTHLY MAINTENANCE -->
-<div class="card">
+<div class="card maintenance-dashboard-card">
     <h3>⚙️ Monthly Maintenance</h3>
     <p style="margin-top: 15px;">Preventive Maintenance Management</p>
 
-    <div style="margin-top: 20px;">
-        <p>
-            <strong>System:</strong>
-            <span class="status-active">● Active</span>
-        </p>
-
-        <p style="margin-top: 10px;">
-            <strong>Due Today:</strong>
-            <span id="maintenance-due-count">--</span>
-        </p>
-
-        <p style="margin-top: 8px;">
-            <strong>On Schedule:</strong>
-            <span id="maintenance-ongoing-count">--</span>
-        </p>
-
-        <p style="margin-top: 8px;">
-            <strong>Completed This Month:</strong>
-            <span id="maintenance-complete-count">--</span>
-        </p>
+    <div class="maintenance-kpi-grid" aria-live="polite">
+        <div class="maintenance-kpi"><span>Total Asset</span><strong id="maintenance-total-count">--</strong></div>
+        <div class="maintenance-kpi"><span>On Schedule</span><strong id="maintenance-ongoing-count">--</strong></div>
+        <div class="maintenance-kpi maintenance-kpi-due"><span>Due Today</span><strong id="maintenance-due-count">--</strong></div>
+        <div class="maintenance-kpi maintenance-kpi-overdue"><span>Overdue</span><strong id="maintenance-overdue-count">--</strong></div>
+        <div class="maintenance-kpi"><span>Due &lt; 7 Days</span><strong id="maintenance-due-soon-count">--</strong></div>
+        <div class="maintenance-kpi"><span>Completed This Month</span><strong id="maintenance-complete-count">--</strong></div>
+        <div class="maintenance-kpi maintenance-kpi-compliance"><span>PM Compliance</span><strong id="maintenance-compliance-count">--</strong></div>
     </div>
 
-    <a
-        href="#monthly-maintenance"
-        class="portal-button nav-item"
-        style="display: inline-block; margin-top: 20px;"
-    >
-        Open Maintenance →
-    </a>
+    <a href="#monthly-maintenance" class="portal-button nav-item" style="display: inline-block; margin-top: 20px;">Open Maintenance →</a>
 </div>
 
     <!-- ROOM HISTORY -->
