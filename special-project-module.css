@@ -17,6 +17,12 @@
 #sp-app .sp-actions {display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 #sp-app .sp-actions label {margin:0}
 #sp-app .sp-table-wrap {overflow-x:auto;margin-top:18px}
+#sp-app .sp-pagination {display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}
+#sp-app #sp-pages {display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#sp-app #sp-pages button {padding:7px 10px;min-width:36px}
+#sp-app #sp-pages button[aria-current=page] {background:#667eea;color:white}
+#sp-app .sp-pagination label {display:flex;align-items:center;gap:8px;margin:0;white-space:nowrap}
+#sp-app .sp-pagination select {width:auto;min-width:64px}
 #sp-app table {border-collapse:collapse;width:100%;min-width:1600px;font-size:.88rem}
 #sp-app th,#sp-app td {padding:12px;border-bottom:1px solid #e7e9ee;text-align:left;vertical-align:top}
 #sp-app th {background:#f4f5fb;color:#475467}
@@ -31,4 +37,4 @@
 #sp-app .sp-timeline li {border-left:3px solid #667eea;margin:12px 0;padding:6px 14px;overflow-wrap:anywhere}
 #sp-app summary {cursor:pointer;color:#596bd5;font-weight:600}
 @media(max-width:1000px){#sp-summary{grid-template-columns:repeat(2,minmax(0,1fr))}#sp-app .sp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){#sp-app .sp-grid{grid-template-columns:1fr}#sp-app .sp-header{flex-direction:column;align-items:stretch}#sp-app .sp-header,#sp-app .sp-panel{padding:14px}#sp-app h1{font-size:1.5rem}}
+@media(max-width:560px){#sp-app .sp-grid{grid-template-columns:1fr}#sp-app .sp-header{flex-direction:column;align-items:stretch}#sp-app .sp-header,#sp-app .sp-panel{padding:14px}#sp-app h1{font-size:1.5rem}#sp-app .sp-pagination{align-items:stretch;flex-direction:column}#sp-app #sp-pages{max-width:100%;justify-content:center}#sp-app .sp-pagination label{justify-content:flex-start}}
